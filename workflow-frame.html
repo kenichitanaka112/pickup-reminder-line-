@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>送迎準備 — チェックリスト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'sans-serif'],
+          },
+          boxShadow: {
+            'soft': '0 1px 3px 0 rgb(0 0 0 / 0.04), 0 4px 12px -2px rgb(0 0 0 / 0.06)',
+            'panel': '0 0 0 1px rgb(15 23 42 / 0.06), 0 8px 24px -4px rgb(15 23 42 / 0.08)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased">
+
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="hidden w-60 shrink-0 flex-col border-r border-slate-200/80 bg-white lg:flex">
+      <div class="flex h-14 items-center gap-2 border-b border-slate-100 px-4">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-sm">
+          <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <p class="truncate text-sm font-semibold text-slate-900">送迎準備</p>
+          <p class="truncate text-xs text-slate-500">チェックリストで当日を押さえる</p>
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-0.5 p-3" aria-label="メインナビゲーション">
+        <button type="button" data-view="briefing" class="nav-item flex w-full items-center gap-3 rounded-lg bg-slate-100 px-3 py-2.5 text-left text-sm font-medium text-slate-900">
+          <svg class="h-5 w-5 shrink-0 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          送迎準備
+        </button>
+        <button type="button" disabled aria-disabled="true" title="未実装" class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-400">
+          <svg class="h-5 w-5 shrink-0 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          ワークフロー<span class="ml-1 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-normal text-slate-500">準備中</span>
+        </button>
+        <button type="button" disabled aria-disabled="true" title="未実装" class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-400">
+          <svg class="h-5 w-5 shrink-0 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          実行履歴<span class="ml-1 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-normal text-slate-500">準備中</span>
+        </button>
+        <button type="button" disabled aria-disabled="true" title="未実装" class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-slate-400">
+          <svg class="h-5 w-5 shrink-0 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          設定<span class="ml-1 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-normal text-slate-500">準備中</span>
+        </button>
+      </nav>
+
+      <div class="border-t border-slate-100 p-3">
+        <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3">
+          <p class="text-xs font-medium text-slate-700">ステータス</p>
+          <p class="mt-1 flex items-center gap-2 text-xs text-slate-500">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            </span>
+            接続済み
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main column -->
+    <div class="flex min-w-0 flex-1 flex-col">
+      <!-- Top bar -->
+      <header class="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-slate-200/80 bg-white/90 px-4 backdrop-blur-md lg:px-6">
+        <div class="flex min-w-0 flex-1 items-center gap-3">
+          <button type="button" id="mobile-menu-btn" class="min-h-11 min-w-11 rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-expanded="false" aria-controls="mobile-menu-drawer" aria-label="メニューを開く">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="relative hidden max-w-md flex-1 sm:block">
+            <label for="global-search" class="sr-only">ワークフローやプロジェクトを検索</label>
+            <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="global-search" type="search" name="q" placeholder="ワークフローやプロジェクトを検索…" autocomplete="off" class="w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20" />
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="hidden min-h-9 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-soft transition hover:border-slate-300 sm:inline-flex">
+            ドキュメント
+          </button>
+          <button type="button" id="header-primary-btn" class="inline-flex min-h-9 items-center gap-2 rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white shadow-soft transition hover:bg-slate-800">
+            <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span id="header-primary-label">実行</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile: 送迎のみ（別リポジトリ版） -->
+      <div class="flex border-b border-slate-200/80 bg-white px-2 py-1.5 lg:hidden" role="status" aria-label="送迎準備">
+        <div class="nav-item-mobile flex min-h-11 w-full items-center justify-center rounded-lg bg-slate-100 py-2.5 text-center text-xs font-medium text-slate-900">送迎準備</div>
+      </div>
+
+      <main class="flex-1 overflow-auto p-4 lg:p-6">
+
+        <!-- 送迎ブリーフィング -->
+        <div id="view-briefing" class="view-panel" role="tabpanel" aria-labelledby="tab-briefing" aria-hidden="false">
+          <div class="mb-6">
+            <nav class="mb-2 text-xs text-slate-500" aria-label="パンくず">
+              <ol class="flex flex-wrap items-center gap-1.5">
+                <li><span class="text-slate-400">ホーム</span></li>
+                <li aria-hidden="true">/</li>
+                <li class="font-medium text-slate-700" aria-current="page">送迎準備</li>
+              </ol>
+            </nav>
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h1 id="briefing-title" tabindex="-1" class="text-2xl font-semibold tracking-tight text-slate-900 outline-none focus-visible:ring-2 focus-visible:ring-pink-500/30 focus-visible:ring-offset-2">送迎日の準備</h1>
+                <p class="mt-1 text-sm text-slate-600">この画面の中心は<strong class="font-medium text-slate-800">準備チェックリスト</strong>です。エスコート前に「話の種」と「当日の段取り」を抜け漏れなく押さえるための案内です。</p>
+              </div>
+              <p id="briefing-saved-hint" role="status" aria-live="polite" aria-atomic="true" class="text-xs text-emerald-600 opacity-0 transition-opacity">保存しました</p>
+            </div>
+          </div>
+
+          <!-- 目的とチェックリストの簡易要約（折りたたみ・必要時のみ開く） -->
+          <details class="group mb-4 rounded-2xl border border-emerald-200/80 bg-gradient-to-br from-emerald-50/90 to-white p-4 shadow-soft sm:p-5">
+            <summary class="cursor-pointer list-none rounded-lg marker:content-none [&amp;::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 focus-visible:ring-offset-2">
+              <span class="flex flex-wrap items-center justify-between gap-2">
+                <span id="purpose-heading" class="text-base font-semibold text-emerald-900">このツールの目的</span>
+                <span class="text-xs font-medium text-emerald-700 group-open:hidden">タップして表示</span>
+                <span class="hidden text-xs font-medium text-emerald-700 group-open:inline">閉じる</span>
+              </span>
+            </summary>
+            <div class="mt-4 border-t border-emerald-200/60 pt-4">
+              <p class="text-sm leading-relaxed text-slate-700">送迎当日、車内で自然に会話できるよう、<strong class="font-medium text-slate-900">事前にチェックすべき項目を一覧で示し、進捗を自分用に記録する</strong>ためのものです。下のチェックをこなすほど、「何も聞かずに沈黙になる」リスクが減ります。</p>
+              <h3 class="mt-4 text-sm font-semibold text-slate-900">準備チェックリストの流れ（簡易要約）</h3>
+              <ol class="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                <li><strong class="font-medium text-slate-800">話題のニュース</strong> — 大谷さん・なでしこ（<strong class="font-medium text-slate-800">谷川萌々子</strong>さん。「谷川桃子」は別人）・鬼滅・髭男／バックナンバーは、下のチェックリスト<strong class="font-medium text-slate-800">1行</strong>でまとめて押さえる想定。詳細はカテゴリー別要約も参照。</li>
+                <li><strong class="font-medium text-slate-800">食事の当たり</strong> — 蕎麦・肉・鰻など嗜好に沿って、エリアと店の候補をざっくり決めておく。</li>
+                <li><strong class="font-medium text-slate-800">車内の段取り</strong> — ガソリン・清掃・温度・音楽など、車内チェックを済ませておく。</li>
+                <li><strong class="font-medium text-slate-800">当日の入り口</strong> — 車内で使うオープンな質問を3つ、頭の中またはメモに用意する。</li>
+              </ol>
+              <p class="mt-3 text-xs text-slate-500">メモ・チェックの記録は<strong class="font-medium text-slate-600">このブラウザの端末内のみ</strong>（外部送信なし）。共有PCでは使わず、機微な内容は書かないでください。</p>
+              <p class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-emerald-800">
+                <a href="#section-topic-digest" class="underline decoration-emerald-600/50 underline-offset-2 hover:text-emerald-900">↓ カテゴリー別・直近の話題（要約）</a>
+                <a href="#frequent-dest-heading" class="underline decoration-emerald-600/50 underline-offset-2 hover:text-emerald-900">↓ よく行く店候補</a>
+                <a href="#section-checklist" class="underline decoration-emerald-600/50 underline-offset-2 hover:text-emerald-900">↓ 準備チェックリスト</a>
+              </p>
+            </div>
+          </details>
+
+          <!-- カテゴリー別：直近トピック要約（静的・日付は手動更新想定） -->
+          <section id="section-topic-digest" class="mb-4 scroll-mt-24" aria-labelledby="digest-heading">
+            <div class="mb-3 flex flex-wrap items-end justify-between gap-2">
+              <h2 id="digest-heading" class="text-lg font-semibold text-slate-900">カテゴリー別・直近の話題（要約）</h2>
+              <p class="text-xs font-medium text-slate-500">情報の目安：<time datetime="2026-04-09">2026年4月9日</time> 時点の公開報道・公式発表ベース</p>
+            </div>
+            <p class="mb-4 text-xs leading-relaxed text-slate-500">このブロックはページに埋め込んだ<strong class="font-medium text-slate-600">静的な要約</strong>です。数日で古くなることがあります。送迎直前にニュースや公式サイトで一言裏取りしてください。<strong class="font-medium text-slate-600">各カードをタップ</strong>すると参考になる外部ページが新しいタブで開きます。<span class="text-slate-600">GitHub Actions 経由の LINE 第1通には、別途 <code class="rounded bg-slate-100 px-1 py-0.5 font-mono text-[10px] text-slate-700">fetch-topics.mjs</code> が RSS/Atom から取得した見出しを追記できます（このページのカード本文とは一致しない場合があります）。</span></p>
+            <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <a href="https://www.nikkansports.com/baseball/mlb/" target="_blank" rel="noopener noreferrer" aria-label="大谷翔平・MLB 詳細は日刊スポーツMLBのページで開く" class="group block rounded-xl border border-slate-200/90 bg-white p-4 text-left text-inherit no-underline shadow-soft transition hover:border-slate-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                <h3 class="text-sm font-semibold text-slate-900 group-hover:text-sky-800">大谷翔平・MLB</h3>
+                <ul class="mt-2 list-disc space-y-1.5 pl-4 text-xs leading-relaxed text-slate-600">
+                  <li>4月初旬、今季<strong>初の投打二刀流先発</strong>で好投・初勝利などの報道（雨中の登板、奪三振・無失点イニングが話題になりやすい）。</li>
+                  <li>打撃は<strong>連続試合出塁</strong>の更新が取り上げられやすい。投球は<strong>カーブ比率増</strong>など球種の幅が記事に出ることが多い。</li>
+                  <li><strong class="text-slate-700">具体例（話の種）</strong>：「先発の日は<strong>何イニング投げたか</strong>」「その日は<strong>DHだけ／打席にも立ったか</strong>」「相手は<strong>ナ・リーグ西地区</strong>のどこか（例：ジャイアンツ、パドレス）」など、<strong>試合後ならスコアアプリで一言確認</strong>してから触れると自然。</li>
+                  <li><strong class="text-slate-700">会話の入り口例</strong>：「昨日（今日）の大谷さんの試合、見ました？」「ニュースで<strong>二刀流先発</strong>って出てましたけど、中継どうでした？」「雨でテンポ崩れた／三振がキレてた、みたいな記事ありましたね」。</li>
+                </ul>
+                <span class="mt-3 block text-[11px] font-medium text-sky-600 group-hover:underline">詳細を外部サイトで開く →</span>
+              </a>
+              <a href="https://www.jfa.jp/nadeshikojapan/" target="_blank" rel="noopener noreferrer" aria-label="なでしこ・谷川萌々子 詳細は日本サッカー協会なでしこページで開く" class="group block rounded-xl border border-slate-200/90 bg-white p-4 text-left text-inherit no-underline shadow-soft transition hover:border-slate-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                <h3 class="text-sm font-semibold text-slate-900 group-hover:text-sky-800">なでしこ・谷川萌々子</h3>
+                <ul class="mt-2 list-disc space-y-1.5 pl-4 text-xs leading-relaxed text-slate-600">
+                  <li><strong>FCバイエルン</strong>：女子<strong>欧州CL</strong>（チャンピオンズリーグ）で準々決勝を突破し<strong>4強</strong>入り（2026年4月初旬の報道）。<strong>日本人対決</strong>では<strong>宮沢ひなた</strong>選手（別クラブ）との顔合わせが記事になりやすい。</li>
+                  <li>国内カップ<strong>DFBポカール</strong>準決勝で<strong>1ゴール1アシスト</strong>などの活躍が報じられる場面あり（クラブ公式戦）。</li>
+                  <li><strong class="text-slate-700">具体例（話の種）</strong>：「<strong>ミュンヘン</strong>でプレー」「<strong>欧州のカップ戦</strong>は日本のニュースだと少しだけ遅れ／要約が短い」ので、「<strong>勝ち上がりは何回戦まで進んだか</strong>」を一言聞くと会話が広がりやすい。</li>
+                  <li><strong class="text-slate-700">会話の入り口例</strong>：「バイエルンの谷川さん、<strong>欧州CL</strong>の話、見ました？」「<strong>日本人同士の対戦</strong>の記事、出てましたね」「<strong>ポカール</strong>（国内カップ）の方は、ゴール＋アシストの試合があったみたいで」。</li>
+                </ul>
+                <p class="mt-2 text-[11px] leading-snug text-slate-500">※話題の中心は<strong class="font-medium text-slate-600">谷川萌々子</strong>さん。<strong class="font-medium text-slate-600">谷川桃子</strong>は別人です。</p>
+                <span class="mt-2 block text-[11px] font-medium text-sky-600 group-hover:underline">詳細を外部サイトで開く →</span>
+              </a>
+              <a href="https://kimetsu.com/" target="_blank" rel="noopener noreferrer" aria-label="鬼滅の刃 詳細は公式サイトで開く" class="group block rounded-xl border border-slate-200/90 bg-white p-4 text-left text-inherit no-underline shadow-soft transition hover:border-slate-300 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                <h3 class="text-sm font-semibold text-slate-900 group-hover:text-sky-800">鬼滅の刃</h3>
+                <ul class="mt-2 list-disc space-y-1.5 pl-4 text-xs leading-relaxed text-slate-600">
+                  <li>劇場版「<strong>無限城編 第一章 猗窩座再来</strong>」は大ヒット継続。一部劇場を除き<strong>4月9日終映</strong>の発表あり（最終週は特典・応援上映など）。</li>
+                  <li><strong>TV全編再放送</strong>が<strong>4月5日</strong>からスタート（フジテレビ系・日曜朝など）。第二章の公開日は<strong>未発表</strong>（推測記事のみなら「未定」と伝えると安全）。</li>
+                  <li><strong class="text-slate-700">具体例（話の種）</strong>：章タイトルに出る<strong>猗窩座（あかざ）</strong>、主人公側は<strong>竈門炭治郎</strong>・<strong>禰豆子</strong>など。映画は「<strong>無限城</strong>」が舞台の続きで、<strong>テレビで再放送中の話とつなげる</strong>と「いまどこまで見たか」が聞きやすい。</li>
+                  <li><strong class="text-slate-700">会話の入り口例</strong>：「劇場版、<strong>もう観に行かれました？</strong>」「<strong>応援上映</strong>と通常上映、どちらにされました？」「TVの再放送、<strong>日曜の放送</strong>から入られてます？」「第二章は<strong>まだ日付出てない</strong>みたいですね、公式だけ当たりにいく感じで」。</li>
+                </ul>
+                <span class="mt-3 block text-[11px] font-medium text-sky-600 group-hover:underline">詳細を外部サイトで開く →</span>
+              </a>
+              <article class="rounded-xl border border-slate-200/90 bg-white p-4 shadow-soft">
+                <h3 class="text-sm font-semibold text-slate-900">音楽（髭男・バックナンバー）</h3>
+                <ul class="mt-2 list-disc space-y-1.5 pl-4 text-xs leading-relaxed text-slate-600">
+                  <li><strong>Official髭男dism</strong>：2026年<strong>4〜7月</strong>の全国ホール＆アリーナ「<strong>one-man tour 2026</strong>」開催。東京圏は<strong>7月・有明アリーナ</strong>公演など。夏以降<strong>アジアツアー</strong>も発表あり。</li>
+                  <li><strong>back number</strong>：<strong>5〜6月</strong>に5大スタジアム「<strong>Grateful Yesterdays Tour 2026</strong>」（<strong>宮城・静岡・大阪・神奈川・熊本</strong>）。<strong>8月以降</strong>台北・ソウル・香港などアジア公演。</li>
+                  <li><strong class="text-slate-700">具体例（曲名で触れやすい）</strong>：髭男は「<strong>Pretender</strong>」「<strong>115万キロのフィルム</strong>」「<strong>I LOVE…</strong>」など、バックナンバーは「<strong>高嶺の花子さん</strong>」「<strong>水平線</strong>」「<strong>クリスマスソング</strong>」など<strong>ライブで大合唱になりやすい曲</strong>が会話の共通語になりやすい。</li>
+                  <li><strong class="text-slate-700">会話の入り口例</strong>：「今年の<strong>有明</strong>、髭男のチケット、もう取られました？」「スタジアムツアーは<strong>どの会場</strong>が近いですか？（大阪／横浜側なら神奈川、など）」「アジア公演まで<strong>空く期間</strong>、他のライブ行かれます？」「車内で流すなら、<strong>アルバムの新しめの曲</strong>から当てる／定番から当てる、どちらが好みですか」。</li>
+                </ul>
+                <p class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+                  <a href="https://www.higedan.com/" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40 underline-offset-2 hover:text-sky-800">髭男 公式</a>
+                  <span class="text-slate-300" aria-hidden="true">|</span>
+                  <a href="https://backnumber.info/stadiumtour2026/" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40 underline-offset-2 hover:text-sky-800">バックナンバー ツアー</a>
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- 準備チェックリスト（メイン） -->
+          <section id="section-checklist" class="mb-4 scroll-mt-24 rounded-2xl border-2 border-slate-200 bg-white p-4 shadow-panel sm:p-5">
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h2 class="text-lg font-semibold text-slate-900">準備チェックリスト</h2>
+                <p class="mt-1 text-sm text-slate-500">上の「流れ」に対応する確認と、車内チェックです。タップして済んだものにチェックを入れてください。</p>
+                <p id="checklist-progress" class="mt-2 text-sm font-semibold text-emerald-700" aria-live="polite">0 / 9 完了</p>
+              </div>
+              <div class="text-right">
+                <button type="button" id="checklist-reset" class="min-h-9 rounded-lg px-2 py-1.5 text-xs font-medium text-slate-500 hover:bg-slate-50 hover:text-slate-800">今月のチェックをクリア</button>
+                <p class="mt-1 max-w-[14rem] text-[11px] leading-snug text-slate-400">チェックのみ外します。日付・メモ・フリーメモは残ります。</p>
+              </div>
+            </div>
+            <div class="mt-4 space-y-6">
+              <div>
+                <h3 id="briefing-check-heading" class="text-sm font-semibold text-slate-800">話題・当日の準備</h3>
+                <ul id="briefing-checklist" class="mt-2 space-y-1 text-sm text-slate-700" aria-labelledby="briefing-check-heading"></ul>
+              </div>
+              <div>
+                <h3 id="car-check-heading" class="text-sm font-semibold text-slate-800">車内チェック</h3>
+                <p class="mt-1 text-xs text-slate-500">アルファードでエスコート前。ガソリン・清掃・温度・音楽など車内環境を整えておきます。</p>
+                <ul id="car-checklist" class="mt-2 space-y-1 text-sm text-slate-700" aria-labelledby="car-check-heading"></ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="grid gap-4">
+            <!-- スケジュール概要 -->
+            <section class="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft">
+              <h2 class="text-base font-semibold text-slate-900">スケジュール前提</h2>
+              <p class="mt-2 text-xs leading-relaxed text-slate-500">この欄の記述は<strong class="font-medium text-slate-600">受取端末（このブラウザ）</strong>でのみ編集・保存されます。リポジトリに同梱されている初期文はあくまでテンプレートです。</p>
+              <label for="schedule-premise-lines" class="sr-only">スケジュール前提（手入力・端末保存）</label>
+              <textarea id="schedule-premise-lines" name="schedule-premise-lines" rows="4" autocomplete="off" placeholder="例：&#10;● 毎月15日：名古屋から前日に上京&#10;● 東京駅 10時台到着 → 池袋メトロポリタンホテル宿泊&#10;● 14日のみ：アルファードでエスコート" class="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-sm leading-relaxed text-slate-800 placeholder:text-slate-400 focus:border-sky-500/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-sky-500/20"></textarea>
+              <div class="mt-4 space-y-3 border-t border-slate-100 pt-4">
+                <p class="text-xs font-medium text-slate-500">今回の便メモ（端末に保存）— <span class="text-slate-600">お迎え日・到着時刻・便名／列車名を1行でまとめて修正</span></p>
+                <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-end sm:gap-x-3 sm:gap-y-2">
+                  <div class="w-full shrink-0 sm:w-[11.25rem]">
+                    <label for="schedule-pickup-date" class="block text-[10px] font-medium uppercase tracking-wide text-slate-500">お迎え日</label>
+                    <input type="date" id="schedule-pickup-date" name="schedule-pickup-date" autocomplete="off" class="mt-0.5 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm text-slate-900 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20" />
+                  </div>
+                  <div class="w-full shrink-0 sm:w-[6.5rem]">
+                    <label for="schedule-tokyo-arrival" class="block text-[10px] font-medium uppercase tracking-wide text-slate-500">到着（東京駅）</label>
+                    <input type="text" id="schedule-tokyo-arrival" name="schedule-tokyo-arrival" autocomplete="off" placeholder="10:18" class="mt-0.5 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-sm text-slate-900 placeholder:text-slate-400 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20" />
+                  </div>
+                  <div class="min-w-0 flex-1 sm:min-w-[12rem]">
+                    <label for="schedule-shinkansen" class="block text-[10px] font-medium uppercase tracking-wide text-slate-500">便名・列車名 <span class="font-normal normal-case text-slate-400">（主に名古屋→東京）</span></label>
+                    <input type="text" id="schedule-shinkansen" name="schedule-shinkansen" autocomplete="off" placeholder="例：のぞみ12号" class="mt-0.5 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-sky-500/50 focus:outline-none focus:ring-2 focus:ring-sky-500/20" />
+                  </div>
+                </div>
+                <div id="arrival-platform-panel" class="mt-3 rounded-xl border border-sky-200/80 bg-sky-50/40 p-3 shadow-sm">
+                  <div class="flex flex-wrap items-center justify-between gap-2">
+                    <p class="text-xs font-semibold text-slate-800">到着ホーム（参照レベル・外部データ）</p>
+                    <button type="button" id="fetch-shinkansen-platform" class="shrink-0 rounded-lg bg-sky-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-sky-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">ODPTで照会</button>
+                  </div>
+                  <p class="mt-2 text-[10px] leading-snug text-slate-600">前提経路は<strong class="font-medium text-slate-700">名古屋→東京駅（新幹線）</strong>がほぼです。ここに出る番線は<strong class="font-medium text-slate-700">参照用</strong>であり、送迎判断の確定根拠にはせず、<strong class="font-medium text-slate-700">発車標・係員案内・公式ダイヤ</strong>を優先してください。</p>
+                  <details class="mt-2 rounded-lg border border-slate-200/80 bg-white/80 p-2 text-[11px] text-slate-600">
+                    <summary class="cursor-pointer font-medium text-slate-700">ODPT アクセスキー（任意・端末に保存）</summary>
+                    <p class="mt-2 leading-relaxed">公共交通オープンデータセンター（<a href="https://developer.odpt.org/" class="text-sky-700 underline decoration-sky-400/50" target="_blank" rel="noopener noreferrer">developer.odpt.org</a>）で発行した <code class="rounded bg-slate-100 px-1">acl:consumerKey</code> をブラウザの localStorage にだけ保存します。リポジトリや GitHub Actions には送りません。</p>
+                    <label for="odpt-consumer-key" class="mt-2 block text-[10px] font-medium text-slate-500">consumerKey</label>
+                    <input type="password" id="odpt-consumer-key" autocomplete="off" class="mt-0.5 w-full rounded border border-slate-200 px-2 py-1.5 font-mono text-xs text-slate-900" placeholder="取得したキーを貼り付け" />
+                    <button type="button" id="odpt-consumer-key-save" class="mt-2 rounded-md border border-slate-300 bg-white px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-50">キーを保存</button>
+                  </details>
+                  <div id="arrival-platform-result" class="mt-2 min-h-[1.25rem] text-xs leading-relaxed text-slate-700" role="status" aria-live="polite"></div>
+                  <p class="mt-2 text-[10px] leading-snug text-slate-500">名古屋→東京（東海道新幹線）は ODPT の駅時刻表に<strong class="font-medium text-slate-600">含まれないことが多く</strong>、照会しても空振りし得ます。他新幹線でヒットした場合も<strong class="font-medium text-slate-600">参照レベル</strong>に留め、番線はダイヤ・臨時・当日運用で変わり得ます。データ出典: ODPT（利用条件・クレジットは同センターの案内に従ってください）。</p>
+                  <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[10px]">
+                    <a href="https://railway.jr-central.co.jp/station-guide/shinkansen/tokyo/jikoku.html" class="font-medium text-sky-700 underline decoration-sky-400/50" target="_blank" rel="noopener noreferrer">JR東海 東京駅・新幹線時刻</a>
+                    <a href="https://www.jreast.co.jp/timetable/list1039.html" class="font-medium text-sky-700 underline decoration-sky-400/50" target="_blank" rel="noopener noreferrer">JR東日本 東京駅ダイヤ</a>
+                    <a href="https://www.jreast.co.jp/e/stations/info.aspx?StationCd=59" class="font-medium text-sky-700 underline decoration-sky-400/50" target="_blank" rel="noopener noreferrer">東京駅 構内サービス</a>
+                    <button type="button" id="arrival-platform-cache-clear" class="font-medium text-slate-500 underline decoration-slate-400/50">照会結果を消す</button>
+                  </div>
+                </div>
+                <p class="text-[11px] leading-relaxed text-slate-500">お迎え日が空欄のときは、下の「乗降所到着目標」は<strong class="font-medium text-slate-600">時刻だけ</strong>の逆算表示です（端末の「今日」の日付で計算）。</p>
+                <div class="rounded-xl border border-amber-200/90 bg-gradient-to-br from-amber-50/90 to-orange-50/50 p-3 shadow-sm">
+                  <p class="text-xs font-semibold text-amber-950">東京駅お迎え（車・八重洲口）</p>
+                  <p class="mt-1.5 text-[11px] leading-relaxed text-amber-950/90">新幹線到着のお迎えは<strong class="font-medium">八重洲口側の乗降所</strong>で<strong class="font-medium">車内待機</strong>になります。駐停車位置の確保のため、<strong class="font-medium">新幹線の東京駅着の少なくとも30分前</strong>には現地到着が必要です。</p>
+                  <div id="pickup-deadline-display" class="mt-3 min-h-[3rem] rounded-lg border border-amber-300/60 bg-white/90 px-3 py-2.5 text-xs leading-relaxed text-amber-950" role="status" aria-live="polite"></div>
+                  <p class="mt-2 text-[10px] leading-snug text-amber-900/70">※路上・乗降所の規制は変更されることがあります。当日は標識・駅案内で必ず確認してください。スマホのリマインダーは、この目標時刻を手入力で登録してください。</p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- ベースプロフィール（折りたたみ・目的ブロックと同パターン） -->
+          <details class="group mt-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft open:border-slate-200 open:shadow-panel sm:p-5">
+            <summary class="cursor-pointer list-none rounded-lg marker:content-none [&amp;::-webkit-details-marker]:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/40 focus-visible:ring-offset-2">
+              <span class="flex flex-wrap items-center justify-between gap-2">
+                <span id="profile-heading" class="text-base font-semibold text-slate-900">把握済みプロフィール（参照用）</span>
+                <span class="text-xs font-medium text-slate-500 group-open:hidden">タップして表示</span>
+                <span class="hidden text-xs font-medium text-slate-500 group-open:inline">閉じる</span>
+              </span>
+            </summary>
+            <div class="mt-4 border-t border-slate-100 pt-4">
+              <p class="text-xs text-slate-500">ご本人から伺った・共有されている情報の整理。必要に応じて編集してください。</p>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">アニメ</p>
+                  <p class="mt-1 text-sm text-slate-800">鬼滅の刃が特に好き。ご自身も描かれる。<strong class="font-medium text-slate-900">コピック</strong>を使ったイラストあり。</p>
+                </div>
+                <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">スポーツ</p>
+                  <p class="mt-1 text-sm text-slate-800">大谷翔平。女子サッカーは<strong class="font-medium text-slate-900">谷川萌々子</strong>さんとご縁あり。</p>
+                  <p class="mt-1 text-[11px] text-slate-500"><strong class="font-medium text-slate-600">谷川桃子</strong>は別人です。過去の誤記・同名混同に注意。</p>
+                </div>
+                <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">音楽</p>
+                  <p class="mt-1 text-sm text-slate-800">Official髭男dism、バックナンバー など</p>
+                </div>
+                <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3 sm:col-span-2 lg:col-span-3">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">食事の嗜好・例</p>
+                  <p class="mt-1 text-sm text-slate-800">お蕎麦、お肉、鰻 など。具体店・施設は下の<strong class="font-medium text-slate-700">「よく行く店候補」</strong>一覧（川上庵系・神田まつや・更科・にょろ助・人形町今半・伊豆栄 梅川亭・百貨店・画材・JUMP SHOP・ミート矢澤・ソワン美容皮膚科など）を参照。当日は体調・予定に合わせて。</p>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <section id="section-destinations" class="mt-4 scroll-mt-24 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft" aria-labelledby="frequent-dest-heading">
+            <h2 id="frequent-dest-heading" class="scroll-mt-24 text-base font-semibold text-slate-900">よく行く店候補（コンパクト）</h2>
+            <p class="mt-1 text-xs leading-relaxed text-slate-500">川上庵系から百貨店・画材、JUMP SHOP（東京ドーム）・ミート矢澤（五反田）・ソワン美容皮膚科（表参道）まで、<strong class="font-medium text-slate-600">よく行く想定のスポットをこの一覧に集約</strong>しています。1行タップで住所・営業／診療・駐車場・連絡先・予約・<strong class="font-medium text-slate-600">池袋駅（メトロポリタンホテル周辺）発の車ルート</strong>（Googleマップ）を表示します。休業・時間帯は出発前に公式で要確認。</p>
+            <div class="mb-6 rounded-2xl border border-pink-200/80 bg-pink-50/40 p-4 shadow-soft" aria-labelledby="user-frequent-venues-heading">
+              <h3 id="user-frequent-venues-heading" class="text-sm font-semibold text-pink-900">ユーザー追加のよく行く店（端末・1行1店）</h3>
+              <p class="mt-1 text-xs leading-relaxed text-slate-600">リマインド相当の<strong class="font-medium text-slate-700">月次トリガー</strong>（毎月13日以降の<strong class="font-medium text-slate-800">初回</strong>ページ表示）で、<strong class="font-medium text-slate-700">訪問済み店リスト</strong>からここへ移します。表記は訪問リストと同じく<strong class="font-medium text-slate-800">店名のみ・1行1店</strong>です。移した当月は <span class="inline-flex items-center rounded-md bg-pink-100 px-1.5 py-0.5 text-[10px] font-semibold text-pink-800 ring-1 ring-pink-200">new</span> を付けます。</p>
+              <p id="user-frequent-venues-empty" class="mt-2 text-xs text-slate-500">まだありません。</p>
+              <ul id="user-frequent-venues-list" class="mt-2 hidden list-disc space-y-1 pl-5 text-sm text-slate-800"></ul>
+            </div>
+            <div id="list-b-candidates-block" class="mb-6 rounded-2xl border border-emerald-200/80 bg-emerald-50/35 p-4 shadow-soft" aria-labelledby="list-b-heading">
+              <h3 id="list-b-heading" class="text-sm font-semibold text-emerald-900">一覧外・追加候補（トリガー取得）</h3>
+              <p class="mt-1 text-xs leading-relaxed text-slate-600">固定の「よく行く店候補」一覧に<strong class="font-medium text-slate-700">無い話題の種</strong>を、<strong class="font-medium text-slate-800">取得タイミング</strong>で入れ替えます。GitHub Actions のトリガー直前と同じく、<strong class="font-medium text-slate-800">ユーザー追加のよく行く店＋訪問済みリスト</strong>の語から軸を推定し、<strong class="font-medium text-slate-800">各軸1〜3件</strong>（該当ゼロなら<strong class="font-medium text-slate-800">0</strong>）。一覧の店名に近い見出しは除外します。</p>
+              <p class="mt-2 text-[10px] leading-snug text-slate-500"><strong class="font-medium text-slate-600">参照レベル</strong>です。手元ブラウザは Wikipedia API（CORS 可）で軸ごとに検索します。LINE 本番（Actions）では同じ軸で Google ニュース RSS を取得します。</p>
+              <div class="mt-2 flex flex-wrap items-center gap-2">
+                <button type="button" id="fetch-list-b-candidates" class="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">いま取得する</button>
+                <span id="list-b-fetch-status" class="text-[11px] text-slate-500" aria-live="polite"></span>
+              </div>
+              <div id="list-b-candidates-root" class="mt-3 space-y-4">
+                <p id="list-b-candidates-placeholder" class="text-xs text-slate-500">「いま取得する」か、下の月次トリガー同期の直後に自動で試みます。</p>
+              </div>
+            </div>
+            <div class="mt-4 space-y-2">
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>川上庵系（南青山 KAWAKAMI-AN TOKYO／外苑前）</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-3 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <div>
+                    <p class="font-semibold text-slate-800">KAWAKAMI-AN TOKYO（南青山）</p>
+                    <p><strong class="text-slate-700">住所</strong>：東京都港区南青山2-14-15 サンロク青山 B1F</p>
+                    <p><strong class="text-slate-700">営業</strong>：平日ランチ11:30〜15:00／ディナー17:00〜22:00（土11:00〜22:00・日11:00〜21:00の例。公式要確認）</p>
+                    <p><strong class="text-slate-700">駐車場</strong>：専用なし（近隣コインパーキング利用）</p>
+                    <p><strong class="text-slate-700">電話</strong>：<a href="tel:0368050840" class="text-sky-700 underline decoration-sky-600/30">03-6805-0840</a></p>
+                    <p><strong class="text-slate-700">予約</strong>：ディナーは予約推奨（公式・予約サイトで要確認）</p>
+                    <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%B8%AF%E5%8C%BA%E5%8D%97%E9%9D%92%E5%B1%B12-14-15" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 南青山2-14-15（Googleマップ）</a></p>
+                  </div>
+                  <div class="border-t border-slate-100 pt-3">
+                    <p class="font-semibold text-slate-800">川上庵 外苑前</p>
+                    <p><strong class="text-slate-700">住所</strong>：東京都渋谷区神宮前2-25-5 フジビル B1F</p>
+                    <p><strong class="text-slate-700">営業</strong>：店舗・曜日で異なるため公式要確認</p>
+                    <p><strong class="text-slate-700">駐車場</strong>：専用なし（近隣コインパーキング）</p>
+                    <p><strong class="text-slate-700">電話</strong>：公式サイトの表記で要確認</p>
+                    <p><strong class="text-slate-700">予約</strong>：公式・電話で要確認</p>
+                    <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D2-25-5" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 神宮前2-25-5（Googleマップ）</a></p>
+                  </div>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>神田まつや（そば）</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都千代田区神田須田町1-13</p>
+                  <p><strong class="text-slate-700">営業</strong>：火〜金 11:00〜20:30（L.O. 20:00）／土・祝 11:00〜19:30（L.O. 19:00）。定休：日・月（公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（神田周辺コインパーキング）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0332511556" class="text-sky-700 underline decoration-sky-600/30">03-3251-1556</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：原則不可・当日行列。状況により電話で相談可の場合あり（公式要確認）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E7%A5%9E%E7%94%B0%E9%A0%88%E7%94%B0%E7%94%BA1-13" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 神田須田町1-13（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>更科 堀町（新宿三丁目・サンフタミビル）</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都新宿区新宿2-16-11 サンフタミビル B1F</p>
+                  <p><strong class="text-slate-700">営業</strong>：ランチ・ディナー営業（定休・時間は公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：ビル・近隣駐車場の有無は当日確認</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0333547001" class="text-sky-700 underline decoration-sky-600/30">03-3354-7001</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：電話・予約サイトは公式要確認</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF2-16-11" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 新宿2-16-11（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>にょろ助 六本木店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都港区六本木5-10-19 ローレルビル 1F</p>
+                  <p><strong class="text-slate-700">営業</strong>：17:00〜23:30（L.O. 23:00目安。月曜定休の報道例あり。公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（近隣コインパーキング）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0367211371" class="text-sky-700 underline decoration-sky-600/30">03-6721-1371</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：食べログ等のネット予約可の店舗あり（公式・予約ページで確認）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%B8%AF%E5%8C%BA%E5%85%AD%E6%9C%AC%E6%9C%A85-10-19" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 六本木5-10-19（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>人形町今半 本店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：〒103-0013 東京都中央区日本橋人形町2-9-12（東京メトロ日比谷線・都営浅草線 人形町駅徒歩1分目安）</p>
+                  <p><strong class="text-slate-700">営業</strong>：平日 11:00〜15:00／17:00〜22:00、土日祝 11:00〜22:00（L.O. 21:00）。定休：大晦日・元日ほか（店休は<a href="https://restaurant.imahan.com/honten/" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">公式</a>要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（甘酒横丁・人形町周辺のコインパーキング利用）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0336667006" class="text-sky-700 underline decoration-sky-600/30">03-3666-7006</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：WEB予約・電話（2階はすき焼・しゃぶ等、1階は鉄板焼ステーキ「喜扇亭」は別枠。公式で要確認）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%97%A5%E6%9C%AC%E6%A9%8B%E4%BA%BA%E5%BD%A2%E7%94%BA2-9-12" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 日本橋人形町2-9-12（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>鰻割烹 伊豆栄 梅川亭（上野公園）</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：〒110-0007 東京都台東区上野公園4-34（JR上野駅 公園口徒歩5分目安）</p>
+                  <p><strong class="text-slate-700">営業</strong>：火〜日・祝 昼 11:00〜15:00（L.O. 14:30）、夜 17:00〜21:00（L.O. 20:00）。定休：月曜（祝の月曜も休みの場合あり。年末年始は<a href="https://izuei.co.jp/shop/" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">公式</a>要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（上野公園周辺・台東区側の有料駐車場は時間制限が多い。当日ナビ・アプリで要確認）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0356852011" class="text-sky-700 underline decoration-sky-600/30">03-5685-2011</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：電話予約（個室利用時はサービス料の案内あり。公式・予約案内を要確認）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E5%8F%B0%E6%9D%B1%E5%8C%BA%E4%B8%8A%E9%87%8E%E5%85%AC%E5%9C%924-34" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 上野公園4-34（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>日本橋高島屋</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都中央区日本橋2-4-1</p>
+                  <p><strong class="text-slate-700">営業</strong>：店舗・フロアにより異なる（案内は公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：あり（料金・時間は公式案内を参照）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0332114111" class="text-sky-700 underline decoration-sky-600/30">03-3211-4111</a>（代表）</p>
+                  <p><strong class="text-slate-700">予約</strong>：館内レストランは店舗ごとに要確認</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%97%A5%E6%9C%AC%E6%A9%8B2-4-1" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 日本橋2-4-1（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>世界堂 新宿本店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都新宿区新宿3-1-1</p>
+                  <p><strong class="text-slate-700">営業</strong>：9:30〜20:00（年末年始等は公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：地下駐車場あり（利用条件は公式要確認）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0353791111" class="text-sky-700 underline decoration-sky-600/30">03-5379-1111</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：不要（一般販売）。イベント等は別途</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%96%B0%E5%AE%BF%E5%8C%BA%E6%96%B0%E5%AE%BF3-1-1" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 新宿3-1-1（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>トゥールズ 御茶ノ水店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都千代田区神田駿河台2-1-30</p>
+                  <p><strong class="text-slate-700">営業</strong>：10:30〜20:00（臨時休業は公式要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（御茶ノ水周辺コインパーキング）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0332951438" class="text-sky-700 underline decoration-sky-600/30">03-3295-1438</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：画材購入は通常不要</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E5%8D%83%E4%BB%A3%E7%94%B0%E5%8C%BA%E7%A5%9E%E7%94%B0%E9%A7%BF%E6%B2%B3%E5%8F%B02-1-30" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 神田駿河台2-1-30（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>表参道ヒルズ</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：東京都渋谷区神宮前4-12-10</p>
+                  <p><strong class="text-slate-700">営業</strong>：ショップ・レストランで異なる（公式案内要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：あり（料金・高さ制限は公式要確認）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0334970310" class="text-sky-700 underline decoration-sky-600/30">03-3497-0310</a>（総合インフォメーション・受付時間は公式要確認）</p>
+                  <p><strong class="text-slate-700">予約</strong>：テナントごとに要確認</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%B8%8B%E8%B0%B7%E5%8C%BA%E7%A5%9E%E5%AE%AE%E5%89%8D4-12-10" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 神宮前4-12-10（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>JUMP SHOP 東京ドームシティ店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：〒112-0004 東京都文京区後楽1-3-61 東京ドームシティ内（アトラクションズ／ジオポリス正面入り口横）</p>
+                  <p><strong class="text-slate-700">営業</strong>：平日 10:30〜19:00、土日祝 10:00〜19:00（予告なく変更あり。<a href="https://www.tokyo-dome.co.jp/shops/s-jumpshop.html" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">東京ドームシティ店舗案内</a>・店舗へ要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：東京ドームシティ内に複数あり（料金・空車・特定日は<a href="https://www.tokyo-dome.co.jp/access/parking.html" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">公式駐車場案内</a>。施設利用で割引の条件あり）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0358426844" class="text-sky-700 underline decoration-sky-600/30">03-5842-6844</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：来店購入は通常不要（イベント時は要確認）。<a href="https://benelic.com/jumpshop/" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">JUMP SHOP 公式</a></p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BE%8C%E6%A5%BD1-3-61" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 文京区後楽1-3-61（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>ミート矢澤 五反田本店</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：〒141-0031 東京都品川区西五反田2-15-13 ニューハイツ西五反田 1F（JR五反田駅 西口徒歩4分目安／都営浅草線 A2 徒歩3分目安）</p>
+                  <p><strong class="text-slate-700">営業</strong>：平日 11:00〜15:30（L.O. 14:30）／17:00〜22:30（L.O. 21:30）。土日祝 11:00〜16:00（L.O. 15:45）／16:00〜22:30（L.O. 21:30）。12/31〜1/2 休業など（<a href="https://valuet.co.jp/brands/meatyazawa-gotanda/" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">公式ブランドページ</a>で要確認）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（五反田・目黒川沿い周辺のコインパーキング利用）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0354362914" class="text-sky-700 underline decoration-sky-600/30">03-5436-2914</a></p>
+                  <p><strong class="text-slate-700">予約</strong>：原則予約不可・当日行列になりやすい（案内変更時は公式要確認）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E5%93%81%E5%B7%9D%E5%8C%BA%E8%A5%BF%E4%BA%94%E5%8F%8D%E7%94%B02-15-13" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 西五反田2-15-13（Googleマップ）</a></p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200/90 bg-slate-50/50 open:bg-white open:shadow-sm">
+                <summary class="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-slate-800 marker:content-none [&amp;::-webkit-details-marker]:hidden">
+                  <span class="flex items-center justify-between gap-2"><span>ソワン美容皮膚科クリニック 表参道院</span><span class="shrink-0 text-xs font-normal text-slate-400 group-open:hidden">開く</span><span class="hidden shrink-0 text-xs font-normal text-slate-400 group-open:inline">閉じる</span></span>
+                </summary>
+                <div class="space-y-1.5 border-t border-slate-100 px-3 py-3 text-xs leading-relaxed text-slate-600">
+                  <p><strong class="text-slate-700">住所</strong>：〒107-0062 東京都港区南青山3-18-19 君島ビル 8F（東京メトロ表参道駅 A3・A4出口 徒歩30秒目安）</p>
+                  <p><strong class="text-slate-700">診療</strong>：完全予約制。曜日・枠は<a href="https://soinclinic.com/" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">soinclinic.com</a>の表示・WEB予約画面で要確認（月・火休診・水〜日に午前／午後の時間帯がある表記が多いです）</p>
+                  <p><strong class="text-slate-700">駐車場</strong>：専用なし（表参道・青山周辺のコインパーキング利用）</p>
+                  <p><strong class="text-slate-700">電話</strong>：<a href="tel:0369105383" class="text-sky-700 underline decoration-sky-600/30">03-6910-5383</a>（当日予約・変更の問い合わせ可の案内あり）</p>
+                  <p><strong class="text-slate-700">予約</strong>：WEB・LINE・電話（<a href="https://soinclinic.com/first.html" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline decoration-sky-600/30">初診・予約の案内</a>）。ビル入口に階段あり（バリアフリー非対応の記載あり）</p>
+                  <p><a href="https://www.google.com/maps/dir/%E6%B1%A0%E8%A2%8B%E9%A7%85/%E6%B8%AF%E5%8C%BA%E5%8D%97%E9%9D%92%E5%B1%B13-18-19" target="_blank" rel="noopener noreferrer" class="font-medium text-sky-600 underline decoration-sky-600/40">車：池袋駅 → 南青山3-18-19（Googleマップ）</a></p>
+                </div>
+              </details>
+            </div>
+            <div class="mt-4">
+              <h3 id="destinations-map-heading" class="text-xs font-semibold text-slate-600">店の位置（示意地図）</h3>
+              <p class="mt-1 text-[11px] leading-relaxed text-slate-500">道路・街区の<strong class="font-medium text-slate-600">イメージ</strong>を足した都心周辺の図です。<strong class="text-red-700">赤</strong>は飲食専門店、<strong class="text-emerald-700">緑</strong>は画材、<strong class="text-blue-700">青</strong>は百貨店・複合・大型施設内ショップ、<strong class="text-violet-700">紫</strong>は医療・美容（クリニック）です。縮尺・形は実地図と一致しません。ナビは各店の住所で検索してください。</p>
+              <figure class="mt-2 overflow-hidden rounded-xl border border-slate-200 bg-emerald-50/30" role="group" aria-labelledby="destinations-map-heading">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 372" class="h-auto max-h-[26rem] w-full" style="font-family: -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif" role="img" aria-label="都心周辺の示意地図。飲食店は赤、画材は緑、複合施設は青、クリニックは紫で表示">
+                  <title>よく行く店候補の位置（示意地図）</title>
+                  <desc>街区と主要道路のイメージ、北は上。飲食専門店のラベルは赤、画材は緑、複合は青、クリニックは紫。池袋は基準の菱形。</desc>
+                  <defs>
+                    <linearGradient id="map-land" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style="stop-color:#ecfdf5"/>
+                      <stop offset="100%" style="stop-color:#e0f2fe"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="520" height="360" fill="url(#map-land)"/>
+                  <rect x="10" y="10" width="500" height="310" rx="10" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                  <ellipse cx="420" cy="55" rx="72" ry="38" fill="#bfdbfe" opacity="0.45"/>
+                  <text x="260" y="28" text-anchor="middle" fill="#475569" style="font-size:12px;font-weight:600">都心周辺（示意・上が北）</text>
+                  <text x="260" y="42" text-anchor="middle" fill="#64748b" style="font-size:9px">← 西　　　　　　　　 東 →</text>
+                  <!-- 街区（淡いブロック） -->
+                  <rect x="60" y="88" width="95" height="58" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" opacity="0.9"/>
+                  <rect x="175" y="72" width="88" height="48" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" opacity="0.85"/>
+                  <rect x="285" y="78" width="100" height="62" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" opacity="0.9"/>
+                  <rect x="395" y="92" width="75" height="52" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8" opacity="0.85"/>
+                  <rect x="72" y="168" width="110" height="72" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="0.6" opacity="0.7"/>
+                  <rect x="125" y="218" width="95" height="58" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" opacity="0.85"/>
+                  <!-- 幹線道路イメージ -->
+                  <path d="M 28 118 L 492 118" fill="none" stroke="#94a3b8" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M 28 118 L 492 118" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="10 8"/>
+                  <path d="M 305 28 L 305 292" fill="none" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M 140 160 Q 200 125 305 118" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
+                  <path d="M 305 118 Q 360 145 395 195" fill="none" stroke="#cbd5e1" stroke-width="2.5"/>
+                  <text x="400" y="112" fill="#94a3b8" style="font-size:8px">環状イメージ</text>
+                  <!-- 基準：池袋（ラベルは菱形の南東へ退避） -->
+                  <path d="M 258 50 L 268 62 L 258 74 L 248 62 Z" fill="#0f766e" stroke="#115e59" stroke-width="1.2"/>
+                  <text x="278" y="102" text-anchor="start" fill="#0f172a" style="font-size:10px;font-weight:700">池袋（泊・基準）</text>
+                  <!-- 飲食＝赤（ラベル位置をずらして重なり回避） -->
+                  <line x1="62" y1="100" x2="62" y2="88" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="62" cy="100" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="62" y="80" text-anchor="middle" fill="#b91c1c" style="font-size:10px;font-weight:600">更科（新宿）</text>
+                  <!-- 神田まつや：記号の右側へラベル（池袋菱形と離す） -->
+                  <line x1="278" y1="90" x2="292" y2="90" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="278" cy="90" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="298" y="94" text-anchor="start" fill="#b91c1c" style="font-size:9px;font-weight:600">神田まつや</text>
+                  <line x1="72" y1="218" x2="72" y2="234" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="72" cy="218" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="72" y="252" text-anchor="middle" fill="#b91c1c" style="font-size:10px;font-weight:600">川上庵（南青山）</text>
+                  <line x1="168" y1="208" x2="198" y2="208" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="168" cy="208" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="208" y="212" text-anchor="start" fill="#b91c1c" style="font-size:10px;font-weight:600">川上庵（外苑前）</text>
+                  <!-- にょろ助：ラベルを記号の西へ -->
+                  <line x1="200" y1="262" x2="186" y2="262" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="200" cy="262" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="178" y="266" text-anchor="end" fill="#b91c1c" style="font-size:9px;font-weight:600">にょろ助（六本木）</text>
+                  <!-- 人形町：ラベルを右へ、伊豆栄は下へ、トゥールズと離す -->
+                  <line x1="408" y1="132" x2="418" y2="140" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="408" cy="132" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="426" y="148" text-anchor="start" fill="#b91c1c" style="font-size:9px;font-weight:600">人形町今半</text>
+                  <line x1="378" y1="102" x2="378" y2="118" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="378" cy="102" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="378" y="136" text-anchor="middle" fill="#b91c1c" style="font-size:9px;font-weight:600">伊豆栄（上野）</text>
+                  <!-- 画材＝緑（世界堂ラベルを西寄りで表参道青と離す） -->
+                  <line x1="108" y1="132" x2="108" y2="148" stroke="#86efac" stroke-width="1"/>
+                  <circle cx="108" cy="132" r="7" fill="#22c55e" stroke="#15803d" stroke-width="1.3"/>
+                  <text x="92" y="168" text-anchor="end" fill="#15803d" style="font-size:9px;font-weight:600">世界堂（新宿）</text>
+                  <!-- トゥールズ：北東へ退避（東側飲食ラベルと離す） -->
+                  <line x1="298" y1="100" x2="308" y2="82" stroke="#86efac" stroke-width="1"/>
+                  <circle cx="298" cy="100" r="7" fill="#22c55e" stroke="#15803d" stroke-width="1.3"/>
+                  <text x="312" y="78" fill="#15803d" style="font-size:9px;font-weight:600"><tspan x="312" dy="0">トゥールズ</tspan><tspan x="312" dy="11">（御茶ノ水）</tspan></text>
+                  <!-- 複合＝青（表参道は南寄り・ラベルを下側へ） -->
+                  <line x1="368" y1="124" x2="368" y2="144" stroke="#93c5fd" stroke-width="1"/>
+                  <circle cx="368" cy="124" r="7" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.3"/>
+                  <text x="368" y="162" text-anchor="middle" fill="#1d4ed8" style="font-size:10px;font-weight:600">日本橋高島屋</text>
+                  <line x1="118" y1="182" x2="118" y2="198" stroke="#93c5fd" stroke-width="1"/>
+                  <circle cx="118" cy="182" r="7" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.3"/>
+                  <text x="118" y="232" text-anchor="middle" fill="#1d4ed8" style="font-size:10px;font-weight:600">表参道ヒルズ</text>
+                  <!-- JUMP：ラベルを記号の西上（池袋文言と離す） -->
+                  <line x1="262" y1="108" x2="248" y2="98" stroke="#93c5fd" stroke-width="1"/>
+                  <circle cx="262" cy="108" r="7" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.3"/>
+                  <text x="244" y="96" text-anchor="end" fill="#1d4ed8" style="font-size:9px;font-weight:600">JUMP（ドーム）</text>
+                  <!-- ミート矢澤：ラベルを南東へ（にょろ助と離す） -->
+                  <line x1="158" y1="268" x2="158" y2="282" stroke="#fca5a5" stroke-width="1"/>
+                  <circle cx="158" cy="268" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1.3"/>
+                  <text x="172" y="298" text-anchor="start" fill="#b91c1c" style="font-size:9px;font-weight:600">ミート矢澤</text>
+                  <!-- ソワン：ラベルを記号の西 -->
+                  <line x1="88" y1="170" x2="76" y2="170" stroke="#d8b4fe" stroke-width="1"/>
+                  <circle cx="88" cy="170" r="7" fill="#a855f7" stroke="#7e22ce" stroke-width="1.3"/>
+                  <text x="72" y="174" text-anchor="end" fill="#7e22ce" style="font-size:9px;font-weight:600">ソワン</text>
+                  <text x="16" y="328" fill="#475569" style="font-size:9px">凡例　◆基準（池袋）</text>
+                  <text x="400" y="328" fill="#64748b" style="font-size:8px">※道路・街区は示意</text>
+                  <text x="16" y="344" fill="#b91c1c" style="font-size:8px;font-weight:600">●赤＝飲食専門店</text>
+                  <text x="168" y="344" fill="#15803d" style="font-size:8px;font-weight:600">●緑＝画材</text>
+                  <text x="280" y="344" fill="#1d4ed8" style="font-size:8px;font-weight:600">●青＝百貨店・複合・施設内</text>
+                  <text x="16" y="358" fill="#7e22ce" style="font-size:8px;font-weight:600">●紫＝医療・美容（クリニック）</text>
+                </svg>
+              </figure>
+            </div>
+            <div class="mt-4 rounded-xl border border-amber-200/70 bg-gradient-to-br from-amber-50/80 to-orange-50/40 p-4 shadow-sm" aria-labelledby="visit-rec-heading">
+              <h3 id="visit-rec-heading" class="text-sm font-semibold text-slate-900">未訪問のおすすめ</h3>
+              <p class="mt-1 text-[11px] leading-relaxed text-slate-600">
+                ここは<strong class="font-medium text-slate-800">都内の高級・上質な飲食と画材のコンシェルジュ</strong>という前提で整理します。<strong class="font-medium text-slate-700">A</strong> は<strong class="font-medium text-slate-700">嗜好・必須条件・出力形式</strong>に沿った<strong class="font-medium text-slate-700">飲食の未訪問案</strong>（下の例はモック。営業・禁煙・ドリンクは必ず公式で裏取り）。<strong class="font-medium text-slate-700">B</strong> は<strong class="font-medium text-slate-700">一覧に無い追加候補</strong>で、よく行く店・訪問済みの語から軸を推定してトリガー取得した見出しを LINE 第1通へ（<a href="#list-b-candidates-block" class="text-sky-700 underline decoration-sky-400/50">一覧外ブロック</a>）。画材の買い物動線は<strong class="font-medium text-slate-700">下の嗜好②と折りたたみの画材店</strong>を参照。
+              </p>
+              <p class="mt-2 text-[11px] leading-relaxed text-slate-600">ページ更新・LINE 文面を直すときは、<strong class="font-medium text-slate-700">訪問済み店リスト</strong>と照合し、重複を減らしてください。</p>
+
+              <div class="mt-4 rounded-lg border border-violet-200/80 bg-violet-50/50 p-3">
+                <p class="text-xs font-bold text-violet-950">コンシェルジュの役割</p>
+                <p class="mt-1 text-[11px] leading-relaxed text-violet-900/95">ユーザーの過去の嗜好と、<strong class="font-medium text-violet-950">厳しい制約条件をすべて満たす</strong>店舗だけを厳選して提案する。画材屋は「必須条件（飲食）」の対象外だが、嗜好②として別枠で考慮する。</p>
+              </div>
+
+              <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                <div class="rounded-lg border border-red-100 bg-white/90 p-3">
+                  <p class="text-xs font-bold text-red-800">嗜好① よく行く飲食店（重複提案の禁止リスト兼ねる）</p>
+                  <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-red-900">
+                    <li>日本橋「うなぎ割烹大江戸」— 格式と大衆性の老舗</li>
+                    <li>日本橋「よつ谷」— 和牛</li>
+                    <li>神田「神田まつや本店」— 蕎麦老舗</li>
+                    <li>六本木「にょろ助」— 炭火焼き</li>
+                    <li>麻布「麻布永坂更科本店」— 蕎麦</li>
+                    <li>北青山「kawakami-an tokyo」</li>
+                    <li>青山「青山川上庵」</li>
+                    <li>麻布「麻布川上庵」</li>
+                  </ul>
+                </div>
+                <div class="rounded-lg border border-emerald-100 bg-white/90 p-3">
+                  <p class="text-xs font-bold text-emerald-900">嗜好② 画材・関連</p>
+                  <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-emerald-900">
+                    <li>新宿「世界堂新宿本店」— 品揃え（やや広すぎ）</li>
+                    <li>神田「トゥールズお茶の水」— 漫画・コピック</li>
+                    <li>後楽「JUMP SHOP 東京ドームシティ」— 画材なし・グッズ</li>
+                  </ul>
+                  <p class="mt-2 text-[10px] leading-relaxed text-emerald-800/90">※下記「必須条件」の番号は<strong class="font-medium">飲食店のみ</strong>に適用。画材屋は別目的のため対象外。</p>
+                </div>
+              </div>
+
+              <div class="mt-3 rounded-lg border border-amber-300/70 bg-white/85 p-3">
+                <p class="text-xs font-bold text-amber-950">必須条件（飲食店のみ・画材屋除外）</p>
+                <ol class="mt-2 list-decimal space-y-1 pl-4 text-[10px] leading-relaxed text-amber-950">
+                  <li>エリア：<strong class="font-medium">表参道ヒルズから車で約20分圏内</strong></li>
+                  <li><strong class="font-medium">店内禁煙</strong>（分煙可不可は公式で確認）</li>
+                  <li>ランチ利用可。<strong class="font-medium">クラフトビールまたはプレミアムビール</strong>がランチ帯から提供され、<strong class="font-medium">ゆっくり会話できる</strong>こと（ランチコースの有無は不問）</li>
+                  <li>客層・空間：<strong class="font-medium">50代の男女3名</strong>（女性2・男性1）が落ち着いて会話できる、上品でくつろげる雰囲気</li>
+                  <li>品質：<strong class="font-medium">SNS映えより素材と技術</strong>が主役</li>
+                  <li>店舗形態：<strong class="font-medium">大規模チェーンを避け</strong>、オーナー目線の個人店・小規模名店を優先</li>
+                  <li>価格：<strong class="font-medium">コスパ売りでない</strong>、質に見合った価格・<strong class="font-medium">1人目安 2,500〜5,000円</strong>（税サ別は公式で）</li>
+                </ol>
+              </div>
+
+              <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/90 p-3">
+                <p class="text-xs font-bold text-slate-800">出力形式（提案1件ごと）</p>
+                <ol class="mt-2 list-decimal space-y-1 pl-4 text-[10px] leading-relaxed text-slate-700">
+                  <li><strong class="font-medium">提案店舗名</strong></li>
+                  <li><strong class="font-medium">選定理由</strong>（上記必須条件のどれをどう満たすか、列挙）</li>
+                  <li><strong class="font-medium">推奨するメニューやビールの特徴</strong></li>
+                  <li><strong class="font-medium">表参道ヒルズからの移動時間</strong>（車想定・地図アプリで再確認）</li>
+                </ol>
+              </div>
+
+              <p class="mt-4 text-xs font-semibold text-amber-950">A — 飲食・未訪問向けの例（コンシェルジュ型・要公式裏取り）</p>
+              <p class="mt-1 text-[10px] leading-relaxed text-amber-900/90">以下は<strong class="font-medium">HTMLモック用のサンプル文案</strong>です。禁煙・ビールの品揃え・ランチ時間・予約は開店直後に電話または公式で必ず確認してください。嗜好①に既にある店名は<strong class="font-medium">未訪問案から除外</strong>します。</p>
+              <div class="mt-3 space-y-4">
+                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                  <h4 class="text-xs font-bold text-red-900">提案店舗名：よろにく 惠比寿店</h4>
+                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①恵比寿は表参道ヒルズから車でおおむね15〜20分圏。②③高級焼肉のため全席禁煙型が多いが<strong class="font-medium text-amber-800">最新の喫煙区分は要公式確認</strong>。ランチ営業あり。プレミアムビール（瓶・樽生の有無）はメニューで要確認。④個室・半個室で会話向き。⑤和牛の火入れ・部位で技術が前面。⑥店舗単位のブランドで大衆チェーンではない。⑦ランチでも質に見合った価格帯になりやすい（予算内かはコース選択で要確認）。嗜好の「よつ谷」「にょろ助」に近い<strong class="font-medium">和牛・炭火</strong>軸。</p>
+                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>しゃぶしゃぶ「薫風」やタン・ハラミ等の部位焼き。ビールはドリンクリストの<strong class="font-medium">国産プレミアム樽生 or 瓶</strong>を確認のうえ選択（クラフトの有無は季節替わりの可能性）。</p>
+                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約12〜18分（渋谷経由・渋滞で変動）</span></p>
+                </article>
+                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                  <h4 class="text-xs font-bold text-red-900">提案店舗名：中国飯店 富麗華（広尾本店）</h4>
+                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①広尾は表参道ヒルズから車で約10〜15分。②ラウンジ型の飲茶・広東料理店で<strong class="font-medium text-amber-800">禁煙方針は公式・席種で要確認</strong>。③ランチ帯からビール提供の事例が多いジャンルだが<strong class="font-medium">メニューで要確認</strong>。落ち着いた席で会話向き。⑤素材（海老・点心）と技術。⑥単店の名店イメージ。⑦飲茶なら目安内に収めやすいがオーダーで変動。</p>
+                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>飲茶の点心の数品に、<strong class="font-medium">プレミアムラガー or 瓶ビール</strong>（青島・ハイネケン等の有無は店舗確認）。海老蒸し餃子・腸粉など上品な一品を中心に。</p>
+                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約8〜14分</span></p>
+                </article>
+                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                  <h4 class="text-xs font-bold text-red-900">提案店舗名：Braceria Yamamoto（広尾）</h4>
+                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①広尾エリアで車10〜15分圏。②③イタリアン肉料理＋バー文化のため<strong class="font-medium">ランチからグラス・瓶のビール類が出やすい</strong>がメニュー要確認。店内は落ち着いた照明と席距離で④に合致しやすい。⑤炭火・肉の扱いで技術重視。⑥オーナーシェフの単店。⑦ランチはコース次第で上限近づくため<strong class="font-medium">事前予算共有</strong>推奨。</p>
+                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>タリアータや炭焼きステーキのランチプレート。ビールは<strong class="font-medium">イタリアン向けプレミアム瓶・生</strong>（メニュー記載の国産・輸入樽生の有無を確認）。</p>
+                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約10〜16分</span></p>
+                </article>
+              </div>
+
+              <p class="mt-5 text-xs font-semibold text-amber-950">B — 一覧に無い追加候補（トリガー時に取得）</p>
+              <p class="mt-1 text-[11px] leading-relaxed text-slate-600">このモック HTML には<strong class="font-medium text-slate-700">店名の静的一覧は載せません</strong>。<strong class="font-medium text-slate-700">GitHub Actions の送迎リマインド実行時</strong>に <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">fetch-topics.mjs</code> が <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">sync-state</code> のよく行く店・訪問済みと <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">listBDynamicAxes</code> で軸を立て、<strong class="font-medium text-slate-700">Google ニュース RSS</strong>から各軸最大3件（詳細URL付き）を <strong class="font-medium text-slate-700">LINE 第1通</strong>へ追記します。軸が一つも立たないときだけ <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">listBCandidateFeeds</code> にフォールバックします。内容は報道・話題の種であり、営業情報の代替ではありません。<strong class="font-medium text-slate-700">軸のキーワードは上の必須条件・嗜好に沿って config で調整</strong>すると、コンシェルジュ方針と齟齬が減ります。</p>
+              <p class="mt-2 rounded-lg border border-slate-200 bg-white/90 p-3 text-[10px] leading-relaxed text-slate-600">ローカル確認: <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">sync-state.json</code> を置いたうえで <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">npm run pickup:fetch-topics</code> → <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">out/list-b-snippet.txt</code>。軸・除外語は <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">config.json</code> の <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">listBDynamicAxes</code> / <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">listBExcludeTitleFragments</code> で調整（各配信元の利用条件に従ってください）。</p>
+
+              <div class="mt-4 rounded-lg border border-amber-300/60 bg-white/70 p-3">
+                <p class="text-xs font-semibold text-slate-800">訪問済み（端末・除外の参考）</p>
+                <p id="visited-venues-empty" class="mt-1 text-[11px] text-slate-500">まだ登録がありません。「今回のフリーメモ」から店名を選んで訪問リストへ追加できます。</p>
+                <ul id="visited-venues-display" class="mt-2 hidden max-h-32 list-disc space-y-0.5 overflow-y-auto pl-4 text-[11px] text-slate-700"></ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft" aria-labelledby="free-memo-heading">
+            <h2 id="free-memo-heading" class="text-base font-semibold text-slate-900">今回のフリーメモ</h2>
+            <p class="mt-2 text-xs leading-relaxed text-slate-600">送迎で<strong class="font-medium text-slate-800">実際に入った店</strong>が決まったら、メモに書いたうえで<strong class="font-medium text-slate-800">下の「訪問済み店リスト」</strong>にも蓄積してください（後からページの「未訪問おすすめ」を直すときの材料になります）。</p>
+            <textarea id="briefing-free-notes" rows="5" placeholder="候補の店・行きたい場所・前回の続きの話題など" class="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20" aria-describedby="free-memo-append-help"></textarea>
+            <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50/80 p-3">
+              <label for="previous-free-notes-display" class="text-xs font-semibold text-slate-700">前回のフリーメモ（コピー用・LINE 第2通と同じ内容）</label>
+              <textarea id="previous-free-notes-display" readonly rows="4" placeholder="（まだスナップショットがありません）" class="mt-1 w-full resize-y rounded-lg border border-slate-200 bg-white px-3 py-2 font-mono text-sm text-slate-700 placeholder:text-slate-400" aria-readonly="true"></textarea>
+            </div>
+            <p id="free-memo-append-help" class="mt-2 text-[11px] text-slate-500">フリーメモ内で<strong class="font-medium text-slate-600">店名の文字だけを選択</strong>し、ボタンを押すと訪問リストに追記されます（空行・重複は除外）。</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <button type="button" id="append-selection-to-visited" class="min-h-9 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-900 hover:bg-emerald-100">選択した店名を訪問リストへ追加</button>
+            </div>
+
+            <h3 class="mt-6 text-sm font-semibold text-slate-900">訪問済み店リスト（端末に保存・1行1店）</h3>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600">過去に実際に行った店名を時系列で残せます。HTMLを編集するときはこの内容と<strong class="font-medium text-slate-700">未訪問のおすすめ</strong>を照らし、重複提案を減らしてください。</p>
+            <textarea id="visited-venues-log" rows="4" placeholder="例：更科 堀町&#10;人形町今半 本店" class="mt-2 w-full resize-y rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2 font-mono text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20"></textarea>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <button type="button" id="clear-visited-venues-log" class="min-h-9 rounded-lg px-3 py-2 text-xs font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-800">訪問リストを空にする</button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- モバイル：全ナビ（ハンバーガー） -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-40 hidden lg:hidden" aria-hidden="true">
+    <button type="button" class="absolute inset-0 bg-slate-900/40" data-drawer-backdrop aria-label="メニューを閉じる"></button>
+    <div class="absolute left-0 top-0 flex h-full w-[min(18rem,100vw)] flex-col border-r border-slate-200 bg-white shadow-xl" role="dialog" aria-modal="true" aria-label="サイトメニュー">
+      <div class="flex h-14 shrink-0 items-center justify-between border-b border-slate-100 px-3">
+        <span class="text-sm font-semibold text-slate-900">メニュー</span>
+        <button type="button" id="mobile-drawer-close" class="min-h-11 min-w-11 rounded-lg p-2 text-slate-500 hover:bg-slate-100" aria-label="メニューを閉じる">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="flex-1 space-y-0.5 overflow-y-auto p-3" aria-label="モバイルナビ">
+        <button type="button" data-view="briefing" class="drawer-nav-item flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-medium text-slate-600 hover:bg-slate-50">送迎準備</button>
+        <p class="px-3 pt-2 text-[11px] font-medium uppercase tracking-wide text-slate-400">その他（準備中）</p>
+        <button type="button" disabled class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-3 text-left text-sm text-slate-400">ワークフロー</button>
+        <button type="button" disabled class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-3 text-left text-sm text-slate-400">実行履歴</button>
+        <button type="button" disabled class="flex w-full cursor-not-allowed items-center gap-3 rounded-lg px-3 py-3 text-left text-sm text-slate-400">設定</button>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE = 'escortBriefing.v1';
+      var DEFAULT_SCHEDULE_PREMISE =
+        '● 毎月15日：ご本人の業務のため名古屋から前日に上京\n' +
+        '● 東京駅 10時台到着 → 池袋メトロポリタンホテル宿泊\n' +
+        '● 14日のみ：アルファードで食事・趣味の買い物などエスコート';
+
+      var BRIEFING_CHECK_IDS = [
+        { id: 'c-topics-entertainment', label: '大谷・MLB、なでしこ／谷川萌々子（谷川桃子は別人）、鬼滅（映画・TV・話題）、髭男・バックナンバーなどをまとめて軽く確認した' },
+        { id: 'c-food', label: '食事候補（蕎麦・肉・鰻）のエリア・店を当たり付けた' },
+        { id: 'c-questions', label: '車内で聞くオープン質問を3つ用意した' }
+      ];
+      var CAR_CHECK_IDS = [
+        { id: 'c-car-fuel', label: 'ガソリン残量を確認し、必要なら給油した' },
+        { id: 'c-car-int-clean', label: '車内清掃（床・シート・ダッシュまわり）をした' },
+        { id: 'c-car-ext-clean', label: '車外清掃（窓・ドアまわり）をした' },
+        { id: 'c-car-climate', label: '空調・温度を調整した（冷暖房・換気・臭い）' },
+        { id: 'c-car-audio', label: '音楽の音量・プレイリスト・曲間の無音を確認した' },
+        { id: 'c-car-final', label: '室内灯・サンシェード・荷物の固定など最終確認した' }
+      ];
+      function allCheckIds() {
+        return BRIEFING_CHECK_IDS.concat(CAR_CHECK_IDS);
+      }
+      var flashTimerId = null;
+      var drawerReturnFocus = null;
+
+      function loadState() {
+        try {
+          var raw = localStorage.getItem(STORAGE);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function updateCheckProgress() {
+        var s = loadState();
+        var checks = s.checks || {};
+        var ids = allCheckIds();
+        var n = ids.filter(function (i) { return checks[i.id]; }).length;
+        var el = document.getElementById('checklist-progress');
+        if (el) el.textContent = n + ' / ' + ids.length + ' 完了';
+      }
+
+      function flashSaved(isError) {
+        var el = document.getElementById('briefing-saved-hint');
+        if (!el) return;
+        el.textContent = isError ? '保存できませんでした（容量やブラウザ設定を確認してください）' : '保存しました';
+        el.classList.toggle('text-red-600', !!isError);
+        el.classList.toggle('text-emerald-600', !isError);
+        el.style.opacity = '1';
+        clearTimeout(flashTimerId);
+        flashTimerId = setTimeout(function () { el.style.opacity = '0'; }, isError ? 2800 : 1200);
+      }
+
+      function saveState(partial) {
+        var s = loadState();
+        Object.assign(s, partial);
+        try {
+          localStorage.setItem(STORAGE, JSON.stringify(s));
+          flashSaved(false);
+        } catch (e) {
+          flashSaved(true);
+        }
+      }
+
+      function setView(name, opts) {
+        opts = opts || {};
+        var brief = document.getElementById('view-briefing');
+        if (!brief) return;
+        brief.classList.remove('hidden');
+        brief.hidden = false;
+        if ('inert' in brief) brief.inert = false;
+        brief.setAttribute('aria-hidden', 'false');
+
+        document.querySelectorAll('.nav-item[data-view]').forEach(function (btn) {
+          var on = btn.getAttribute('data-view') === 'briefing';
+          if (on) btn.setAttribute('aria-current', 'page');
+          else btn.removeAttribute('aria-current');
+          btn.classList.toggle('bg-slate-100', on);
+          btn.classList.toggle('text-slate-900', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('text-slate-600', !on);
+          var svg = btn.querySelector('svg');
+          if (svg) {
+            svg.classList.remove('text-emerald-600', 'text-pink-600', 'text-slate-400');
+            if (on) svg.classList.add('text-pink-600');
+            else svg.classList.add('text-slate-400');
+          }
+        });
+
+        document.querySelectorAll('.drawer-nav-item[data-view]').forEach(function (btn) {
+          var on = btn.getAttribute('data-view') === 'briefing';
+          btn.classList.toggle('bg-slate-100', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('text-slate-900', on);
+          btn.classList.toggle('text-slate-600', !on);
+        });
+
+        var hp = document.getElementById('header-primary-btn');
+        if (hp) hp.classList.add('hidden');
+
+        if (opts.focusTitle) {
+          var title = document.getElementById('briefing-title');
+          if (title) title.focus({ preventScroll: true });
+        }
+      }
+
+      function openMobileDrawer() {
+        var d = document.getElementById('mobile-menu-drawer');
+        var btn = document.getElementById('mobile-menu-btn');
+        if (!d || !btn) return;
+        drawerReturnFocus = document.activeElement;
+        d.classList.remove('hidden');
+        d.setAttribute('aria-hidden', 'false');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+        var closeBtn = document.getElementById('mobile-drawer-close');
+        if (closeBtn) closeBtn.focus();
+      }
+
+      function closeMobileDrawer(opts) {
+        opts = opts || {};
+        var d = document.getElementById('mobile-menu-drawer');
+        var btn = document.getElementById('mobile-menu-btn');
+        if (!d) return;
+        d.classList.add('hidden');
+        d.setAttribute('aria-hidden', 'true');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('overflow-hidden');
+        if (!opts.skipReturnFocus && drawerReturnFocus && typeof drawerReturnFocus.focus === 'function') {
+          drawerReturnFocus.focus();
+        }
+        drawerReturnFocus = null;
+      }
+
+      function renderCheckItems(ul, items, checks) {
+        if (!ul) return;
+        ul.innerHTML = '';
+        items.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'flex min-h-11 items-start gap-3 rounded-lg border border-transparent px-1 py-1 hover:bg-slate-50';
+          var cb = document.createElement('input');
+          cb.type = 'checkbox';
+          cb.id = item.id;
+          cb.checked = !!checks[item.id];
+          cb.className = 'mt-2.5 h-5 w-5 shrink-0 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500/30';
+          cb.addEventListener('change', function () {
+            var next = loadState();
+            next.checks = next.checks || {};
+            next.checks[item.id] = cb.checked;
+            saveState({ checks: next.checks });
+            updateCheckProgress();
+          });
+          var lab = document.createElement('label');
+          lab.htmlFor = item.id;
+          lab.className = 'min-h-11 flex-1 cursor-pointer py-2 text-sm leading-snug text-slate-700';
+          lab.textContent = item.label;
+          li.appendChild(cb);
+          li.appendChild(lab);
+          ul.appendChild(li);
+        });
+      }
+
+      function renderChecklist() {
+        var s = loadState();
+        var checks = s.checks || {};
+        renderCheckItems(document.getElementById('briefing-checklist'), BRIEFING_CHECK_IDS, checks);
+        renderCheckItems(document.getElementById('car-checklist'), CAR_CHECK_IDS, checks);
+        updateCheckProgress();
+      }
+
+      var PICKUP_DEADLINE_PLACEHOLDER_HTML =
+        '<span class="text-slate-500">「到着（東京駅）」に時刻（例 <span class="font-mono text-slate-600">10:18</span>）を入れると、<strong class="font-medium text-slate-700">八重洲口乗降所に着く目標時刻（新幹線着の30分前）</strong>を表示します。</span>';
+
+      function pad2(n) {
+        return (n < 10 ? '0' : '') + n;
+      }
+
+      function parseArrivalTime(str) {
+        if (!str || typeof str !== 'string') return null;
+        var s = str.trim();
+        var m = s.match(/(\d{1,2})[:：](\d{2})/);
+        if (m) {
+          var h = parseInt(m[1], 10);
+          var min = parseInt(m[2], 10);
+          if (h >= 0 && h <= 23 && min >= 0 && min <= 59) return { h: h, min: min };
+        }
+        m = s.match(/(\d{1,2})\s*時\s*(\d{1,2})\s*分?/);
+        if (m) {
+          h = parseInt(m[1], 10);
+          min = parseInt(m[2], 10);
+          if (h >= 0 && h <= 23 && min >= 0 && min <= 59) return { h: h, min: min };
+        }
+        m = s.match(/(\d{1,2})\s*時台/);
+        if (m) {
+          h = parseInt(m[1], 10);
+          if (h >= 0 && h <= 23) return { h: h, min: 0 };
+        }
+        return null;
+      }
+
+      function updatePickupDeadlineHint() {
+        var container = document.getElementById('pickup-deadline-display');
+        var input = document.getElementById('schedule-tokyo-arrival');
+        var dateInput = document.getElementById('schedule-pickup-date');
+        if (!container || !input) return;
+        var t = parseArrivalTime(input.value);
+        if (!t) {
+          container.innerHTML = PICKUP_DEADLINE_PLACEHOLDER_HTML;
+          return;
+        }
+        var ymd = dateInput && dateInput.value ? dateInput.value : '';
+        var arrival = new Date();
+        if (ymd) {
+          var parts = ymd.split('-');
+          if (parts.length === 3) {
+            arrival.setFullYear(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+          }
+        }
+        arrival.setHours(t.h, t.min, 0, 0);
+        var deadline = new Date(arrival.getTime() - 30 * 60 * 1000);
+        var arrLabel = pad2(t.h) + ':' + pad2(t.min);
+        var dlLabel = pad2(deadline.getHours()) + ':' + pad2(deadline.getMinutes());
+        var p1 = document.createElement('p');
+        p1.className = 'font-semibold text-amber-950';
+        if (ymd) {
+          p1.textContent =
+            deadline.getFullYear() +
+            '年' +
+            (deadline.getMonth() + 1) +
+            '月' +
+            deadline.getDate() +
+            '日 ' +
+            dlLabel +
+            ' までに八重洲口乗降所着';
+        } else {
+          p1.textContent = dlLabel + ' までに八重洲口乗降所着（新幹線着 ' + arrLabel + ' の30分前）';
+        }
+        var pArr = document.createElement('p');
+        pArr.className = 'mt-1 text-[11px] text-amber-900/80';
+        if (ymd) {
+          pArr.textContent =
+            '新幹線東京駅着（予定）：' +
+            arrival.getFullYear() +
+            '年' +
+            (arrival.getMonth() + 1) +
+            '月' +
+            arrival.getDate() +
+            '日 ' +
+            arrLabel;
+        } else {
+          pArr.textContent = '新幹線東京駅着（予定）：' + arrLabel + '（日付は上段の「お迎え日」で指定すると確実）';
+        }
+        var p2 = document.createElement('p');
+        p2.className = 'mt-1 text-[11px] text-amber-900/85';
+        p2.textContent = '駐停車位置の確保のため、この時刻を遅れない目安にしてください（車内待機）。';
+        var p3 = document.createElement('p');
+        p3.className = 'mt-1.5 text-[11px] text-amber-800';
+        if (!ymd) {
+          p3.textContent =
+            'お迎え日が空欄のときは、端末の「今日」の日付で計算しています。送迎日と違う日にページを開いていると日付がずれます。確実にするには「お迎え日」を指定してください。';
+        } else {
+          p3.textContent =
+            'スマホのカレンダーやアラームに登録するときは、この乗降所着時刻を手入力してください（ブラウザから自動通知はしません）。';
+        }
+        container.innerHTML = '';
+        container.appendChild(p1);
+        container.appendChild(pArr);
+        container.appendChild(p2);
+        container.appendChild(p3);
+      }
+
+      var ODPT_TOKYO_STATION = 'odpt.Station:JR-East.Tokyo';
+      /* 主経路は名古屋→東京（東海道）想定のため東海道を先に試す。ODPT に無い場合が多い。 */
+      var ODPT_SHINKANSEN_RAILWAYS = [
+        { id: 'odpt.Railway:JR-Central.TokaidoShinkansen', name: '東海道新幹線（JR東海）' },
+        { id: 'odpt.Railway:JR-East.TohokuShinkansen', name: '東北新幹線（JR東日本）' },
+        { id: 'odpt.Railway:JR-East.HokurikuShinkansen', name: '北陸新幹線（JR東日本）' },
+        { id: 'odpt.Railway:JR-East.JoetsuShinkansen', name: '上越新幹線（JR東日本）' },
+        { id: 'odpt.Railway:JR-East.YamagataShinkansen', name: '山形新幹線（JR東日本）' },
+        { id: 'odpt.Railway:JR-East.AkitaShinkansen', name: '秋田新幹線（JR東日本）' },
+        { id: 'odpt.Railway:JR-West.SanyoShinkansen', name: '山陽新幹線（JR西日本）' }
+      ];
+
+      function normalizeTrainInput(s) {
+        if (!s || typeof s !== 'string') return '';
+        return s
+          .replace(/\s+/g, '')
+          .replace(/[０-９]/g, function (ch) {
+            var code = ch.charCodeAt(0) - 0xff10;
+            return code >= 0 && code <= 9 ? String(code) : ch;
+          });
+      }
+
+      function parseTrainNeedle(s) {
+        var n = normalizeTrainInput(s).toLowerCase();
+        if (!n) return null;
+        var numMatch = n.match(/(\d{1,4})/);
+        var num = numMatch ? numMatch[1] : null;
+        var types = [
+          'のぞみ',
+          'ひかり',
+          'こだま',
+          'みずほ',
+          'さくら',
+          'つばめ',
+          'はやぶさ',
+          'はやて',
+          'やまびこ',
+          'なすの',
+          'とき',
+          'たにがわ',
+          'かがやき',
+          'はくたか',
+          'あさま',
+          'つるぎ',
+          'こまち'
+        ];
+        var trainType = null;
+        for (var ti = 0; ti < types.length; ti++) {
+          if (n.indexOf(types[ti]) !== -1) {
+            trainType = types[ti];
+            break;
+          }
+        }
+        return { raw: s, normalized: n, number: num, trainType: trainType };
+      }
+
+      function odptCalendarForLocalYmd(ymd) {
+        if (!ymd || !/^\d{4}-\d{2}-\d{2}$/.test(ymd)) return 'odpt.Calendar:Weekday';
+        var parts = ymd.split('-');
+        var d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        if (isNaN(d.getTime())) return 'odpt.Calendar:Weekday';
+        var day = d.getDay();
+        if (day === 0 || day === 6) return 'odpt.Calendar:SaturdayHoliday';
+        return 'odpt.Calendar:Weekday';
+      }
+
+      function collectOdptRowStrings(row) {
+        var acc = [];
+        if (!row || typeof row !== 'object') return '';
+        for (var k in row) {
+          if (!Object.prototype.hasOwnProperty.call(row, k)) continue;
+          var v = row[k];
+          if (typeof v === 'string') acc.push(v);
+          else if (v && typeof v === 'object') {
+            if (typeof v.ja === 'string') acc.push(v.ja);
+            if (typeof v.en === 'string') acc.push(v.en);
+          }
+        }
+        return acc.join(' ');
+      }
+
+      function platformFromOdptRow(row) {
+        var keys = ['odpt:arrivalPlatform', 'odpt:departurePlatform', 'odpt:platformNumber', 'odpt:trackNumber'];
+        for (var ki = 0; ki < keys.length; ki++) {
+          var v = row[keys[ki]];
+          if (v == null) continue;
+          if (typeof v === 'string' && v.trim()) return v.trim();
+          if (v && typeof v === 'object' && typeof v.ja === 'string' && v.ja.trim()) return v.ja.trim();
+        }
+        return null;
+      }
+
+      function timeTokenFromOdptRow(row) {
+        return row['odpt:arrivalTime'] || row['odpt:departureTime'] || row['odpt:passingTime'] || '';
+      }
+
+      function rowClockMatchesArrival(row, arrTok) {
+        if (!arrTok) return 0;
+        var token = timeTokenFromOdptRow(row);
+        if (!token || typeof token !== 'string') return 0;
+        var m = token.match(/(\d{1,2})[:：](\d{2})/);
+        if (!m) return 0;
+        var h = parseInt(m[1], 10);
+        var min = parseInt(m[2], 10);
+        if (h === arrTok.h && min === arrTok.min) return 4;
+        return 0;
+      }
+
+      function scoreOdptRowAgainstNeedle(row, needle) {
+        if (!needle) return 0;
+        var hay = collectOdptRowStrings(row).toLowerCase();
+        if (!hay) return 0;
+        var score = 0;
+        if (needle.trainType && hay.indexOf(needle.trainType) !== -1) score += 6;
+        if (needle.number && hay.indexOf(needle.number) !== -1) score += 5;
+        var compact = needle.normalized.replace(/号/g, '');
+        if (compact.length > 1 && hay.indexOf(compact) !== -1) score += 2;
+        return score;
+      }
+
+      function flattenOdptStationTimetable(body) {
+        var rows = [];
+        if (!Array.isArray(body)) return rows;
+        body.forEach(function (doc) {
+          var objs = doc && doc['odpt:stationTimetableObject'];
+          if (!Array.isArray(objs)) return;
+          objs.forEach(function (o) {
+            rows.push(o);
+          });
+        });
+        return rows;
+      }
+
+      function fetchOdptTokyoStationTimetable(consumerKey, railwayUri, calendarUri) {
+        var base =
+          'https://api.odpt.org/api/v4/odpt:StationTimetable.json?odpt:station=' +
+          encodeURIComponent(ODPT_TOKYO_STATION) +
+          '&odpt:railway=' +
+          encodeURIComponent(railwayUri) +
+          '&acl:consumerKey=' +
+          encodeURIComponent(consumerKey);
+        if (calendarUri) base += '&odpt:calendar=' + encodeURIComponent(calendarUri);
+        return fetch(base).then(function (res) {
+          if (!res.ok) return Promise.reject(new Error('HTTP ' + res.status));
+          return res.json();
+        });
+      }
+
+      function pickBestPlatformRow(rows, needle, arrTok) {
+        var best = null;
+        var bestScore = 0;
+        for (var ri = 0; ri < rows.length; ri++) {
+          var row = rows[ri];
+          var plat = platformFromOdptRow(row);
+          if (!plat) continue;
+          var sc = scoreOdptRowAgainstNeedle(row, needle) + rowClockMatchesArrival(row, arrTok);
+          if (sc > bestScore) {
+            bestScore = sc;
+            best = { platform: plat, score: bestScore, row: row };
+          }
+        }
+        var minScore = needle && needle.trainType ? 5 : 8;
+        if (best && bestScore >= minScore) return best;
+        return null;
+      }
+
+      function tryRailwayOdpt(consumerKey, railMeta, calendars, needle, arrTok) {
+        var attempts = [];
+        calendars.forEach(function (c) {
+          attempts.push(c);
+        });
+        attempts.push(null);
+        var idx = 0;
+        function nextAttempt() {
+          if (idx >= attempts.length) return Promise.resolve(null);
+          var cal = attempts[idx++];
+          return fetchOdptTokyoStationTimetable(consumerKey, railMeta.id, cal)
+            .then(function (body) {
+              var rows = flattenOdptStationTimetable(body);
+              var hit = pickBestPlatformRow(rows, needle, arrTok);
+              if (hit) {
+                return {
+                  ok: true,
+                  platform: hit.platform,
+                  railway: railMeta.name,
+                  railwayId: railMeta.id,
+                  calendar: cal ? cal : '(カレンダー指定なし)',
+                  score: hit.score,
+                  rowCount: rows.length
+                };
+              }
+              return nextAttempt();
+            })
+            .catch(function () {
+              return nextAttempt();
+            });
+        }
+        return nextAttempt();
+      }
+
+      function lookupTokyoShinkansenPlatformOdpt(consumerKey, needle, ymd, arrTok) {
+        var primary = odptCalendarForLocalYmd(ymd);
+        var calendars = [primary].concat(
+          ['odpt.Calendar:Weekday', 'odpt.Calendar:SaturdayHoliday'].filter(function (c) {
+            return c !== primary;
+          })
+        );
+        var ri = 0;
+        function nextRail() {
+          if (ri >= ODPT_SHINKANSEN_RAILWAYS.length) {
+            return Promise.resolve({
+              ok: false,
+              message:
+                'ODPT の東京駅駅時刻表から、便名・時刻に一致するホームを特定できませんでした。主経路の名古屋→東京（東海道新幹線）は ODPT に載らないことが多いです。番線は参照用に過ぎないため、JR東海・JR東日本の公式ダイヤと駅の発車標で必ず確認してください。'
+            });
+          }
+          var railMeta = ODPT_SHINKANSEN_RAILWAYS[ri++];
+          return tryRailwayOdpt(consumerKey, railMeta, calendars, needle, arrTok).then(function (hit) {
+            if (hit && hit.ok) return hit;
+            return nextRail();
+          });
+        }
+        return nextRail();
+      }
+
+      function renderArrivalPlatformResult(payload) {
+        var el = document.getElementById('arrival-platform-result');
+        if (!el) return;
+        el.innerHTML = '';
+        if (!payload || !payload.ok) {
+          var p = document.createElement('p');
+          p.className = 'text-slate-600';
+          p.textContent =
+            (payload && payload.message) ||
+            '「ODPTで照会」は参照用です。主経路は名古屋→東京（東海道新幹線）想定。ODPT に載る路線のみヒットし、東海道は空振りしやすいです。';
+          el.appendChild(p);
+          return;
+        }
+        var main = document.createElement('p');
+        main.className = 'font-semibold text-slate-900';
+        main.textContent = '到着ホーム（参照・確定ではありません）: ' + payload.platform;
+        el.appendChild(main);
+        var sub = document.createElement('p');
+        sub.className = 'mt-1 text-[11px] text-slate-600';
+        sub.textContent =
+          '路線: ' +
+          payload.railway +
+          ' / カレンダー: ' +
+          payload.calendar +
+          '（ODPT 駅時刻表の参照レベル。名古屋→東京の実番線は発車標・JR公式で裏取りしてください）';
+        el.appendChild(sub);
+      }
+
+      function parseVisitedLines(text) {
+        if (!text || typeof text !== 'string') return [];
+        return text
+          .split(/\r?\n/)
+          .map(function (line) { return line.trim(); })
+          .filter(Boolean);
+      }
+
+      function getListBConfigUrl() {
+        try {
+          return new URL('config.json', window.location.href).toString();
+        } catch (e) {
+          return '';
+        }
+      }
+
+      function wikipediaSearchForAxis(query, fetchPool) {
+        var n = Math.min(10, Math.max(3, fetchPool));
+        var url =
+          'https://ja.wikipedia.org/w/api.php?action=query&list=search&srlimit=' +
+          n +
+          '&format=json&origin=*&utf8=1&srsearch=' +
+          encodeURIComponent(query);
+        return fetch(url, { credentials: 'omit' })
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          })
+          .then(function (data) {
+            var hits = (data.query && data.query.search) || [];
+            var out = [];
+            for (var hi = 0; hi < hits.length; hi++) {
+              var h = hits[hi];
+              var title = (h.title || '').trim();
+              if (!title) continue;
+              var link = 'https://ja.wikipedia.org/wiki/' + encodeURIComponent(title.replace(/ /g, '_'));
+              out.push({ title: title, link: link });
+            }
+            return out;
+          });
+      }
+
+      function renderListBCandidatesEmpty(msg) {
+        var root = document.getElementById('list-b-candidates-root');
+        if (!root) return;
+        root.innerHTML = '';
+        var p = document.createElement('p');
+        p.className = 'text-xs text-slate-500';
+        p.textContent =
+          msg ||
+          'よく行く店・訪問済みに語が無いか、軸が立ちませんでした。リストに店名を足してから「いま取得する」を試してください。';
+        root.appendChild(p);
+      }
+
+      function renderListBCandidatesGroups(groups) {
+        var root = document.getElementById('list-b-candidates-root');
+        if (!root) return;
+        root.innerHTML = '';
+        if (!groups || !groups.length) {
+          renderListBCandidatesEmpty('除外後に 0 件でした（各軸ゼロ可）。');
+          return;
+        }
+        groups.forEach(function (g) {
+          var sec = document.createElement('div');
+          sec.className = 'rounded-lg border border-emerald-200/70 bg-white/90 p-3 shadow-sm';
+          var h = document.createElement('h4');
+          h.className = 'text-xs font-semibold text-emerald-900';
+          h.textContent = g.label + '（' + (g.items ? g.items.length : 0) + '件）';
+          sec.appendChild(h);
+          var ul = document.createElement('ul');
+          ul.className = 'mt-2 space-y-2 text-xs text-slate-800';
+          (g.items || []).forEach(function (it) {
+            var li = document.createElement('li');
+            li.className = 'flex flex-wrap items-baseline gap-x-2 gap-y-1 leading-relaxed';
+            var span = document.createElement('span');
+            span.className = 'min-w-0 flex-1';
+            span.textContent = it.title;
+            li.appendChild(span);
+            if (it.link) {
+              var a = document.createElement('a');
+              a.href = it.link;
+              a.target = '_blank';
+              a.rel = 'noopener noreferrer';
+              a.className =
+                'inline-flex shrink-0 items-center rounded-md border border-emerald-300 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-800 hover:bg-emerald-100';
+              a.textContent = '詳細';
+              li.appendChild(a);
+            }
+            ul.appendChild(li);
+          });
+          sec.appendChild(ul);
+          root.appendChild(sec);
+        });
+      }
+
+      function refreshListBCandidatesFromConfig(showStatus) {
+        var statusEl = document.getElementById('list-b-fetch-status');
+        var cfgUrl = getListBConfigUrl();
+        if (!cfgUrl) {
+          if (statusEl) statusEl.textContent = '';
+          renderListBCandidatesEmpty('config.json の URL を解決できません（リポジトリルートで http サーバーを立て、workflow-frame.html と同じオリジンで開いてください）。');
+          return Promise.resolve();
+        }
+        if (showStatus !== false && statusEl) statusEl.textContent = '取得中…';
+        return fetch(cfgUrl)
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          })
+          .then(function (cfg) {
+            var coreUrl = new URL('lib/list-b-core.mjs', window.location.href).href;
+            return import(coreUrl).then(function (LB) {
+              var s = loadState();
+              var merged = LB.mergeVenueLines(s);
+              var active = LB.pickActiveAxes(cfg, merged);
+              if (active.length === 0) {
+                if (statusEl) statusEl.textContent = '';
+                return [];
+              }
+              var maxPer = LB.listBDynamicMaxPerAxis(cfg);
+              var fetchPool = LB.listBDynamicFetchPool(cfg, maxPer);
+              var fragments = LB.buildExcludeFragments(merged, cfg);
+              var groups = [];
+              function nextAxis(i) {
+                if (i >= active.length) return Promise.resolve(groups);
+                var ax = active[i];
+                var label = ax.label || '候補';
+                var q = ax.searchQuery || label;
+                return wikipediaSearchForAxis(q + ' 日本', fetchPool)
+                  .then(function (picked) {
+                    var filtered = [];
+                    for (var pi = 0; pi < picked.length; pi++) {
+                      if (filtered.length >= maxPer) break;
+                      var it = picked[pi];
+                      if (LB.titleExcluded(it.title, fragments)) continue;
+                      filtered.push(it);
+                    }
+                    if (filtered.length) groups.push({ label: label, items: filtered });
+                  })
+                  .then(function () {
+                    return nextAxis(i + 1);
+                  });
+              }
+              return nextAxis(0);
+            });
+          })
+          .then(function (groups) {
+            if (statusEl) statusEl.textContent = '';
+            if (groups && groups.length) renderListBCandidatesGroups(groups);
+            else renderListBCandidatesEmpty(null);
+          })
+          .catch(function (e) {
+            if (statusEl) statusEl.textContent = '';
+            renderListBCandidatesEmpty('取得に失敗: ' + (e && e.message ? e.message : ''));
+          });
+      }
+
+      function getTokyoYmd() {
+        return new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'Asia/Tokyo',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).format(new Date());
+      }
+
+      function getTokyoYmKey() {
+        return getTokyoYmd().slice(0, 7);
+      }
+
+      function getTokyoDay() {
+        return parseInt(getTokyoYmd().slice(8, 10), 10);
+      }
+
+      function renderUserFrequentVenues() {
+        var s = loadState();
+        var lines = parseVisitedLines(s.userFrequentVenuesLog || '');
+        var ul = document.getElementById('user-frequent-venues-list');
+        var empty = document.getElementById('user-frequent-venues-empty');
+        if (!ul || !empty) return;
+        ul.innerHTML = '';
+        var tags = s.userFrequentNewTags || {};
+        var ym = getTokyoYmKey();
+        if (lines.length === 0) {
+          empty.classList.remove('hidden');
+          ul.classList.add('hidden');
+          return;
+        }
+        empty.classList.add('hidden');
+        ul.classList.remove('hidden');
+        lines.forEach(function (line) {
+          var li = document.createElement('li');
+          li.className = 'leading-relaxed';
+          li.appendChild(document.createTextNode(line));
+          if (tags[line] === ym) {
+            var span = document.createElement('span');
+            span.className =
+              'ml-1.5 inline-flex items-center rounded-md bg-pink-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-pink-800 ring-1 ring-pink-200';
+            span.textContent = 'new';
+            span.setAttribute('aria-label', '今月追加');
+            li.appendChild(span);
+          }
+          ul.appendChild(li);
+        });
+      }
+
+      function runMonthlyReminderSync() {
+        var s = loadState();
+        var visitedLines = parseVisitedLines(s.visitedVenuesLog || '');
+        var memo = (s.freeNotes || '').trim();
+        var ym = getTokyoYmKey();
+        var curU = parseVisitedLines(s.userFrequentVenuesLog || '');
+        var seen = {};
+        curU.forEach(function (x) {
+          seen[x.toLowerCase()] = true;
+        });
+        var tags = Object.assign({}, s.userFrequentNewTags || {});
+        visitedLines.forEach(function (line) {
+          var t = line.trim();
+          if (!t) return;
+          var k = t.toLowerCase();
+          if (seen[k]) return;
+          seen[k] = true;
+          curU.push(t);
+          tags[t] = ym;
+        });
+        saveState({
+          userFrequentVenuesLog: curU.join('\n'),
+          userFrequentNewTags: tags,
+          visitedVenuesLog: '',
+          freeNotes: '',
+          previousFreeNotesSnapshot: memo,
+          lastMonthlyReminderHookYm: ym
+        });
+        var visitedLog = document.getElementById('visited-venues-log');
+        var free = document.getElementById('briefing-free-notes');
+        if (visitedLog) visitedLog.value = '';
+        if (free) free.value = '';
+        var prevEl = document.getElementById('previous-free-notes-display');
+        if (prevEl) prevEl.value = memo;
+        updateVisitedVenuesDisplay();
+        renderUserFrequentVenues();
+        window.setTimeout(function () {
+          refreshListBCandidatesFromConfig(true);
+        }, 500);
+      }
+
+      function maybePromptMonthlyReminderSync() {
+        window.setTimeout(function () {
+          var s = loadState();
+          if (getTokyoDay() < 13) return;
+          var ym = getTokyoYmKey();
+          if (s.lastMonthlyReminderHookYm === ym) return;
+          var visitedLines = parseVisitedLines(s.visitedVenuesLog || '');
+          var memo = (s.freeNotes || '').trim();
+          if (visitedLines.length === 0 && !memo) return;
+          var msg =
+            '送迎リマインド相当の同期（毎月13日以降・初回のみ）\n\n' +
+            '・訪問済み店リストを「ユーザー追加のよく行く店」へ移す（1行1店・重複は除外）\n' +
+            '・訪問済みリストは空にする\n' +
+            '・今回のフリーメモは「前回のフリーメモ」欄へスナップしてから空にする\n\n' +
+            '実行しますか？';
+          if (!window.confirm(msg)) return;
+          runMonthlyReminderSync();
+        }, 600);
+      }
+
+      function updateVisitedVenuesDisplay() {
+        var s = loadState();
+        var lines = parseVisitedLines(s.visitedVenuesLog || '');
+        var ul = document.getElementById('visited-venues-display');
+        var empty = document.getElementById('visited-venues-empty');
+        if (!ul || !empty) return;
+        ul.innerHTML = '';
+        if (lines.length === 0) {
+          empty.classList.remove('hidden');
+          ul.classList.add('hidden');
+          return;
+        }
+        empty.classList.add('hidden');
+        ul.classList.remove('hidden');
+        lines.forEach(function (line) {
+          var li = document.createElement('li');
+          li.textContent = line;
+          ul.appendChild(li);
+        });
+      }
+
+      function mergeIntoVisitedLog(newChunks) {
+        var s = loadState();
+        var existing = parseVisitedLines(s.visitedVenuesLog || '');
+        var seen = {};
+        existing.forEach(function (x) {
+          seen[x.toLowerCase()] = true;
+        });
+        newChunks.forEach(function (chunk) {
+          var parts = chunk.split(/[,、]/);
+          parts.forEach(function (p) {
+            var t = p.trim();
+            if (!t) return;
+            var k = t.toLowerCase();
+            if (seen[k]) return;
+            seen[k] = true;
+            existing.push(t);
+          });
+        });
+        var nextText = existing.join('\n');
+        saveState({ visitedVenuesLog: nextText });
+        var logTa = document.getElementById('visited-venues-log');
+        if (logTa) logTa.value = nextText;
+        updateVisitedVenuesDisplay();
+      }
+
+      function bindBriefingFields() {
+        var s = loadState();
+        var free = document.getElementById('briefing-free-notes');
+        var visitedLog = document.getElementById('visited-venues-log');
+        var scheduleArrival = document.getElementById('schedule-tokyo-arrival');
+        var schedulePickupDate = document.getElementById('schedule-pickup-date');
+        var scheduleShinkansen = document.getElementById('schedule-shinkansen');
+        var schedulePremise = document.getElementById('schedule-premise-lines');
+        if (free) free.value = s.freeNotes || '';
+        var prevFreeEl = document.getElementById('previous-free-notes-display');
+        if (prevFreeEl) prevFreeEl.value = s.previousFreeNotesSnapshot || '';
+        if (visitedLog) visitedLog.value = s.visitedVenuesLog || '';
+        if (scheduleArrival) scheduleArrival.value = s.scheduleTokyoArrival || '';
+        if (schedulePickupDate) schedulePickupDate.value = s.schedulePickupDate || '';
+        if (scheduleShinkansen) scheduleShinkansen.value = s.scheduleShinkansen || '';
+        if (schedulePremise) {
+          schedulePremise.value =
+            typeof s.schedulePremiseLines === 'string' ? s.schedulePremiseLines : DEFAULT_SCHEDULE_PREMISE;
+        }
+
+        function debounce(fn, ms) {
+          var t;
+          return function () {
+            clearTimeout(t);
+            var a = arguments;
+            t = setTimeout(function () { fn.apply(null, a); }, ms);
+          };
+        }
+
+        var persist = debounce(function () {
+          saveState({
+            freeNotes: free ? free.value : '',
+            visitedVenuesLog: visitedLog ? visitedLog.value : '',
+            scheduleTokyoArrival: scheduleArrival ? scheduleArrival.value : '',
+            schedulePickupDate: schedulePickupDate ? schedulePickupDate.value : '',
+            scheduleShinkansen: scheduleShinkansen ? scheduleShinkansen.value : '',
+            schedulePremiseLines: schedulePremise ? schedulePremise.value : ''
+          });
+        }, 400);
+
+        if (free) free.addEventListener('input', persist);
+        if (visitedLog) {
+          visitedLog.addEventListener('input', function () {
+            persist();
+            updateVisitedVenuesDisplay();
+          });
+        }
+        if (scheduleArrival) {
+          scheduleArrival.addEventListener('input', function () {
+            persist();
+            updatePickupDeadlineHint();
+          });
+        }
+        if (schedulePickupDate) {
+          schedulePickupDate.addEventListener('input', function () {
+            persist();
+            updatePickupDeadlineHint();
+          });
+        }
+        if (scheduleShinkansen) scheduleShinkansen.addEventListener('input', persist);
+        if (schedulePremise) schedulePremise.addEventListener('input', persist);
+
+        var odptKeyInput = document.getElementById('odpt-consumer-key');
+        if (odptKeyInput) odptKeyInput.value = s.odptConsumerKey || '';
+
+        var saveOdptBtn = document.getElementById('odpt-consumer-key-save');
+        if (saveOdptBtn && odptKeyInput) {
+          saveOdptBtn.addEventListener('click', function () {
+            saveState({ odptConsumerKey: odptKeyInput.value.trim() });
+            window.alert('ODPT の consumerKey をこの端末に保存しました。');
+          });
+        }
+
+        var platformBtn = document.getElementById('fetch-shinkansen-platform');
+        if (platformBtn) {
+          platformBtn.addEventListener('click', function () {
+            var key = (odptKeyInput && odptKeyInput.value.trim()) || (loadState().odptConsumerKey || '').trim();
+            var trainStr = scheduleShinkansen ? scheduleShinkansen.value.trim() : '';
+            if (!trainStr) {
+              window.alert('先に「便名・列車名」を入力してください（例：のぞみ12号）。');
+              return;
+            }
+            if (!key) {
+              window.alert('ODPT の consumerKey を入力し、「キーを保存」してください。');
+              return;
+            }
+            var needle = parseTrainNeedle(trainStr);
+            var ymd = schedulePickupDate ? schedulePickupDate.value : '';
+            var arrTok = scheduleArrival ? parseArrivalTime(scheduleArrival.value) : null;
+            platformBtn.disabled = true;
+            renderArrivalPlatformResult({ ok: false, message: 'ODPT から取得しています…' });
+            lookupTokyoShinkansenPlatformOdpt(key, needle, ymd, arrTok)
+              .then(function (res) {
+                renderArrivalPlatformResult(res);
+                if (res && res.ok) {
+                  saveState({
+                    arrivalPlatformCache: {
+                      ok: true,
+                      platform: res.platform,
+                      railway: res.railway,
+                      calendar: res.calendar,
+                      score: res.score,
+                      fetchedAt: new Date().toISOString()
+                    }
+                  });
+                }
+              })
+              .catch(function (e) {
+                renderArrivalPlatformResult({
+                  ok: false,
+                  message:
+                    '通信または API でエラーが出ました（' +
+                    (e && e.message ? e.message : '詳細不明') +
+                    '）。時間をおいて再試行してください。'
+                });
+              })
+              .then(function () {
+                platformBtn.disabled = false;
+              });
+          });
+        }
+
+        var clearPlat = document.getElementById('arrival-platform-cache-clear');
+        if (clearPlat) {
+          clearPlat.addEventListener('click', function () {
+            saveState({ arrivalPlatformCache: null });
+            renderArrivalPlatformResult(null);
+          });
+        }
+
+        var listBFetchBtn = document.getElementById('fetch-list-b-candidates');
+        if (listBFetchBtn) {
+          listBFetchBtn.addEventListener('click', function () {
+            refreshListBCandidatesFromConfig(true);
+          });
+        }
+
+        var platCache = s.arrivalPlatformCache;
+        if (platCache && platCache.ok && platCache.platform) {
+          renderArrivalPlatformResult(platCache);
+        } else {
+          renderArrivalPlatformResult(null);
+        }
+
+        var appendSel = document.getElementById('append-selection-to-visited');
+        if (appendSel && free) {
+          appendSel.addEventListener('click', function () {
+            var start = free.selectionStart;
+            var end = free.selectionEnd;
+            if (start == null || end == null || start === end) {
+              window.alert('フリーメモで店名の文字をドラッグして選択してから、もう一度ボタンを押してください。');
+              return;
+            }
+            var sel = free.value.slice(start, end).trim();
+            if (!sel) {
+              window.alert('選択範囲が空です。');
+              return;
+            }
+            mergeIntoVisitedLog([sel]);
+          });
+        }
+
+        var clearVisited = document.getElementById('clear-visited-venues-log');
+        if (clearVisited) {
+          clearVisited.addEventListener('click', function () {
+            if (!window.confirm('訪問済み店リストをすべて削除しますか？')) return;
+            saveState({ visitedVenuesLog: '' });
+            if (visitedLog) visitedLog.value = '';
+            updateVisitedVenuesDisplay();
+          });
+        }
+
+        updateVisitedVenuesDisplay();
+        renderUserFrequentVenues();
+        updatePickupDeadlineHint();
+        maybePromptMonthlyReminderSync();
+
+        var reset = document.getElementById('checklist-reset');
+        if (reset) {
+          reset.addEventListener('click', function () {
+            if (!confirm('今月のチェックをすべて外しますか？')) return;
+            var next = loadState();
+            next.checks = {};
+            allCheckIds().forEach(function (item) { next.checks[item.id] = false; });
+            saveState({ checks: next.checks });
+            renderChecklist();
+          });
+        }
+      }
+
+      document.querySelectorAll('[data-view]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var fromDrawer = btn.classList.contains('drawer-nav-item');
+          closeMobileDrawer({ skipReturnFocus: fromDrawer });
+          setView(btn.getAttribute('data-view'), { focusTitle: fromDrawer });
+        });
+      });
+
+      var menuBtn = document.getElementById('mobile-menu-btn');
+      if (menuBtn) menuBtn.addEventListener('click', openMobileDrawer);
+      var drawerClose = document.getElementById('mobile-drawer-close');
+      if (drawerClose) drawerClose.addEventListener('click', closeMobileDrawer);
+      document.querySelectorAll('[data-drawer-backdrop]').forEach(function (el) {
+        el.addEventListener('click', closeMobileDrawer);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        var d = document.getElementById('mobile-menu-drawer');
+        if (d && !d.classList.contains('hidden')) closeMobileDrawer();
+      });
+
+      renderChecklist();
+      bindBriefingFields();
+      setView('briefing');
+    })();
+  </script>
+</body>
+</html>

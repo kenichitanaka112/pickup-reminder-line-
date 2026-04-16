@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>送迎リマインド自動化 — 実装計画（図解）</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'strict',
+      theme: 'base',
+      themeVariables: {
+        fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
+        fontSize: '14px',
+        primaryColor: '#ecfdf5',
+        primaryTextColor: '#0f172a',
+        primaryBorderColor: '#10b981',
+        lineColor: '#64748b',
+        secondaryColor: '#f0f9ff',
+        tertiaryColor: '#faf5ff',
+      },
+      flowchart: {
+        curve: 'basis',
+        padding: 12,
+        nodeSpacing: 40,
+        rankSpacing: 28,
+      },
+    });
+  </script>
+  <style>
+    .rail-arrow {
+      clip-path: polygon(0 35%, 70% 35%, 70% 0, 100% 50%, 70% 100%, 70% 65%, 0 65%);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100/90 text-slate-900 antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:shadow">本文へ</a>
+
+  <header class="border-b border-slate-200/80 bg-white/95 px-4 py-8 shadow-sm backdrop-blur">
+    <div class="mx-auto max-w-5xl">
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-emerald-600">commit-report-tool · automation</p>
+          <h1 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">送迎リマインド自動化</h1>
+          <p class="mt-1 text-lg font-medium text-slate-600">実装計画（図解）</p>
+        </div>
+        <nav class="flex flex-wrap gap-2 text-sm" aria-label="ページ内リンク">
+          <a href="#overview" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">概要</a>
+          <a href="#four" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">4パーツ</a>
+          <a href="#pipeline" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">パイプライン</a>
+          <a href="#tasks" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">成果物</a>
+          <a href="#schedule" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">スケジュール</a>
+          <a href="#policy" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 shadow-sm hover:border-emerald-300 hover:text-emerald-800">依頼仕様</a>
+        </nav>
+      </div>
+      <p class="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600">
+        <a class="font-medium text-sky-700 underline decoration-sky-600/30 hover:text-sky-900" href="../workflow-frame.html">workflow-frame.html</a>
+        の設計メモと
+        <a class="font-medium text-sky-700 underline decoration-sky-600/30 hover:text-sky-900" href="../README.md">README.md</a>
+        を、実装時に見返しやすい形に再構成したものです。
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-5xl space-y-12 px-4 py-10 pb-16">
+    <!-- 一枚図：レール -->
+    <section id="overview" class="scroll-mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-md sm:p-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-700">Overview</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">ゴールまでの一本線（単一ジョブ）</p>
+      <p class="mt-2 text-sm text-slate-600">GitHub Actions の<strong class="text-slate-800">1 ジョブ</strong>の中で、リポジトリを checkout し、文面を組み立て、LINE に Push します。</p>
+
+      <div class="mt-8 hidden sm:block">
+        <div class="flex items-stretch justify-between gap-0">
+          <div class="flex min-w-0 flex-1 flex-col items-center rounded-xl border-2 border-emerald-200 bg-gradient-to-b from-emerald-50 to-white px-3 py-4 text-center shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">1</span>
+            <p class="mt-2 text-xs font-semibold text-emerald-900">トリガー</p>
+            <p class="mt-1 text-xs leading-snug text-slate-600">毎月13日 19:00 JST<br />または手動</p>
+          </div>
+          <div class="flex w-8 shrink-0 items-center justify-center self-center text-slate-300" aria-hidden="true">
+            <div class="h-3 w-6 bg-slate-300 rail-arrow" title=""></div>
+          </div>
+          <div class="flex min-w-0 flex-1 flex-col items-center rounded-xl border-2 border-sky-200 bg-gradient-to-b from-sky-50 to-white px-3 py-4 text-center shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-sky-600 text-sm font-bold text-white">2</span>
+            <p class="mt-2 text-xs font-semibold text-sky-900">checkout</p>
+            <p class="mt-1 text-xs leading-snug text-slate-600">既定ブランチの<br />最新コミット</p>
+          </div>
+          <div class="flex w-8 shrink-0 items-center justify-center self-center text-slate-300" aria-hidden="true">
+            <div class="h-3 w-6 bg-slate-300 rail-arrow"></div>
+          </div>
+          <div class="flex min-w-0 flex-1 flex-col items-center rounded-xl border-2 border-violet-200 bg-gradient-to-b from-violet-50 to-white px-3 py-4 text-center shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white">3</span>
+            <p class="mt-2 text-xs font-semibold text-violet-900">文面生成</p>
+            <p class="mt-1 text-xs leading-snug text-slate-600">YAML ＋<br />任意で取得</p>
+          </div>
+          <div class="flex w-8 shrink-0 items-center justify-center self-center text-slate-300" aria-hidden="true">
+            <div class="h-3 w-6 bg-slate-300 rail-arrow"></div>
+          </div>
+          <div class="flex min-w-0 flex-1 flex-col items-center rounded-xl border-2 border-amber-200 bg-gradient-to-b from-amber-50 to-white px-3 py-4 text-center shadow-sm">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-600 text-sm font-bold text-white">4</span>
+            <p class="mt-2 text-xs font-semibold text-amber-900">LINE Push</p>
+            <p class="mt-1 text-xs leading-snug text-slate-600">Messaging API<br />グループ宛</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- モバイル：縦積み -->
+      <ol class="mt-6 space-y-3 sm:hidden">
+        <li class="flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50/50 p-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">1</span>
+          <div><p class="font-semibold text-emerald-900">トリガー</p><p class="text-xs text-slate-600">毎月13日 19:00（Asia/Tokyo）または workflow_dispatch</p></div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-sky-200 bg-sky-50/50 p-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-600 text-sm font-bold text-white">2</span>
+          <div><p class="font-semibold text-sky-900">checkout</p><p class="text-xs text-slate-600">リポジトリを取得（デフォルトブランチ）</p></div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-violet-200 bg-violet-50/50 p-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white">3</span>
+          <div><p class="font-semibold text-violet-900">文面生成</p><p class="text-xs text-slate-600">config.yml 等を読み、必要なら API / Web を取得して整形</p></div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-amber-200 bg-amber-50/50 p-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-600 text-sm font-bold text-white">4</span>
+          <div><p class="font-semibold text-amber-900">LINE Push</p><p class="text-xs text-slate-600">Secrets のトークンと送信先 ID で Push</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 4パーツ グリッド -->
+    <section id="four" class="scroll-mt-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Architecture</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">4 パーツ対応表</p>
+      <p class="mt-2 text-sm text-slate-600">設計メモ（workflow-frame）の列と 1:1 で対応しています。</p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <article class="rounded-2xl border border-emerald-200/90 bg-white p-5 shadow-sm ring-1 ring-emerald-500/10">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" aria-hidden="true">⏱</span>
+            <h3 class="text-base font-bold text-emerald-900">トリガー</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-700">
+            <strong class="text-slate-900">毎月 13 日 19:00</strong>（<code class="rounded bg-slate-100 px-1.5 py-0.5 text-xs">Asia/Tokyo</code>）の定期実行。
+          </p>
+          <p class="mt-2 text-sm leading-relaxed text-slate-700">
+            併用：<strong class="text-slate-900">workflow_dispatch</strong>（手動・任意タイミング）。
+          </p>
+          <p class="mt-3 rounded-lg bg-emerald-50/80 px-3 py-2 text-xs text-emerald-900">発動のたびにハイブリッド側を取り直し、送信直前の文面にする。</p>
+        </article>
+
+        <article class="rounded-2xl border border-sky-200/90 bg-white p-5 shadow-sm ring-1 ring-sky-500/10">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" aria-hidden="true">📦</span>
+            <h3 class="text-base font-bold text-sky-900">ソース</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-700">
+            <strong class="text-slate-900">案 C ＋ ハイブリッド</strong>
+          </p>
+          <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-slate-700">
+            <li><span class="font-medium text-slate-800">固定</span>：テンプレ・<code class="text-xs">config.yml</code> 等（リポジトリ内）</li>
+            <li><span class="font-medium text-slate-800">都度</span>：GitHub API / Web 取得（必要なら）</li>
+          </ul>
+        </article>
+
+        <article class="rounded-2xl border border-violet-200/90 bg-white p-5 shadow-sm ring-1 ring-violet-500/10">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" aria-hidden="true">⚙️</span>
+            <h3 class="text-base font-bold text-violet-900">処理する場所</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-700">
+            <strong class="text-slate-900">GitHub Actions の 1 ジョブ</strong>内で完結。
+          </p>
+          <p class="mt-2 text-sm text-slate-600">Secrets・<code class="text-xs">schedule</code>・失敗ログが一箇所に揃い、運用が素直。</p>
+        </article>
+
+        <article class="rounded-2xl border border-amber-200/90 bg-white p-5 shadow-sm ring-1 ring-amber-500/10">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" aria-hidden="true">💬</span>
+            <h3 class="text-base font-bold text-amber-900">届け先</h3>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-700">
+            <strong class="text-slate-900">LINE グループ</strong>（Messaging API · Push）。
+          </p>
+          <div class="mt-3 overflow-x-auto rounded-lg border border-amber-100 bg-amber-50/50 p-3">
+            <table class="min-w-full text-left text-xs text-slate-800">
+              <thead>
+                <tr class="border-b border-amber-200/80">
+                  <th class="pb-2 pr-4 font-semibold">Secret 名</th>
+                  <th class="pb-2 font-semibold">内容</th>
+                </tr>
+              </thead>
+              <tbody class="font-mono">
+                <tr>
+                  <td class="py-2 pr-4 align-top text-[11px] leading-snug">SOUGEI_PREP_LINE_CHANNEL_ACCESS_TOKEN</td>
+                  <td class="py-2 align-top">チャネルアクセストークン</td>
+                </tr>
+                <tr>
+                  <td class="py-2 pr-4 align-top text-[11px] leading-snug">SOUGEI_PREP_LINE_TO</td>
+                  <td class="py-2 align-top">グループ ID 等（<code class="text-[10px]">to</code> にそのまま）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mermaid：データフロー -->
+    <section id="pipeline" class="scroll-mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-md sm:p-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Flow</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">データの流れ（Mermaid）</p>
+      <p class="mt-2 text-sm text-slate-600">定期・手動のどちらから入っても、同じジョブ列に合流します。</p>
+      <div class="mt-6 overflow-x-auto rounded-xl border border-slate-100 bg-slate-50/80 p-4 sm:p-6">
+        <pre class="mermaid flex justify-center">
+flowchart TB
+  subgraph trig[トリガー]
+    direction LR
+    S1[毎月13日 19:00 JST]
+    S2[workflow_dispatch]
+  end
+  subgraph job[GitHub Actions 同一ジョブ]
+    C[actions/checkout]
+    B[build-message.mjs<br/>YAML + 任意fetch]
+    P[send-local.mjs<br/>LINE Push]
+  end
+  subgraph secret[GitHub Secrets]
+    T[CHANNEL_ACCESS_TOKEN]
+    G[LINE_TO]
+  end
+  S1 --> C
+  S2 --> C
+  C --> B
+  B --> P
+  T -.->|env 注入| P
+  G -.->|env 注入| P
+        </pre>
+      </div>
+    </section>
+
+    <!-- 成果物チェックリスト -->
+    <section id="tasks" class="scroll-mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-md sm:p-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Deliverables</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">実装タスクと依存</p>
+
+      <div class="mt-6 overflow-x-auto rounded-xl border border-slate-100 bg-slate-50/80 p-4 sm:p-6">
+        <pre class="mermaid flex justify-center">
+flowchart LR
+  W[.github/workflows<br/>pickup-reminder.yml]
+  Y[config.yml]
+  B[build-message.mjs]
+  L[send-local.mjs]
+  W --> B
+  Y --> B
+  B -->|SOUGEI_PREP_LINE_TEXT| L
+        </pre>
+      </div>
+
+      <ul class="mt-6 divide-y divide-slate-100 rounded-xl border border-slate-200 bg-slate-50/40">
+        <li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <span class="font-medium text-slate-900">ワークフロー新規</span>
+          <code class="text-xs text-slate-600 sm:text-right">.github/workflows/pickup-reminder.yml</code>
+        </li>
+        <li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <span class="font-medium text-slate-900">文面設定</span>
+          <code class="text-xs text-slate-600 sm:text-right">config.json</code>
+        </li>
+        <li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <span class="font-medium text-slate-900">文面ビルド</span>
+          <code class="text-xs text-slate-600 sm:text-right">build-message.mjs</code>
+        </li>
+        <li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <span class="font-medium text-slate-900">送信（既存流用）</span>
+          <code class="text-xs text-slate-600 sm:text-right">send-local.mjs</code>
+        </li>
+        <li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <span class="font-medium text-slate-900">手順の追記</span>
+          <code class="text-xs text-slate-600 sm:text-right">README.md</code>
+        </li>
+      </ul>
+    </section>
+
+    <!-- スケジュール -->
+    <section id="schedule" class="scroll-mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-md sm:p-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Schedule</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">ワークフロー YAML のイメージ</p>
+      <div class="mt-4 grid gap-4 lg:grid-cols-2">
+        <div>
+          <p class="text-sm font-medium text-slate-800">ポイント</p>
+          <ul class="mt-2 list-inside list-disc space-y-2 text-sm text-slate-600">
+            <li>GitHub 公式：<code class="rounded bg-slate-100 px-1 text-xs">on.schedule</code> に <code class="rounded bg-slate-100 px-1 text-xs">timezone</code>（IANA）を付けられる。</li>
+            <li>日本は夏時間なしのため <code class="text-xs">Asia/Tokyo</code> と cron の組み合わせが分かりやすい。</li>
+            <li>スケジュール実行は公式どおり<strong>遅延しうる</strong>（厳密な時刻要件は別途検討）。</li>
+          </ul>
+        </div>
+        <pre class="overflow-x-auto rounded-xl bg-slate-900 p-4 text-xs leading-relaxed text-emerald-100 shadow-inner"><code>on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 19 13 * *'   # 毎月13日 19:00
+      timezone: 'Asia/Tokyo'</code></pre>
+      </div>
+    </section>
+
+    <section id="policy" class="scroll-mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-md sm:p-8">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Policy</h2>
+      <p class="mt-1 text-xl font-bold text-slate-900">運用依頼の反映（4 点）</p>
+      <dl class="mt-6 space-y-5 text-sm text-slate-700">
+        <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+          <dt class="font-semibold text-slate-900">1. 失敗時の通知チャンネル</dt>
+          <dd class="mt-2 leading-relaxed">第一優先は<strong class="text-slate-900">通常と同じ LINE グループ</strong>（<code class="text-xs">pickup-reminder.yml</code> の失敗ステップで <code class="text-xs">send-local.mjs</code> を再実行）。第二候補は <code class="text-xs">SOUGEI_PREP_FAILURE_WEBHOOK_URL</code>（Discord / Slack Incoming など 1 POST）。さらに必要なら同パターンで Webhook を増やす。</dd>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+          <dt class="font-semibold text-slate-900">2. 訪問済み → よく行く店</dt>
+          <dd class="mt-2 leading-relaxed"><code class="text-xs">sync-state.json</code> の <code class="text-xs">visitedVenuesLog</code> を <code class="text-xs">build-message.mjs</code> が第1通に取り込み、1 行 1 店＋ <code class="text-xs">[new]</code> で付箋相当。ブラウザの一覧を実際に更新するのは <strong class="text-slate-900">workflow-frame の同期</strong>（localStorage）。</dd>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+          <dt class="font-semibold text-slate-900">3. 前回のフリーメモ（第2通）</dt>
+          <dd class="mt-2 leading-relaxed"><code class="text-xs">freeNotes</code> を sync に置くと <code class="text-xs">previous-memo.txt</code> より優先して第2通「前回のフリーメモ」になる。入力欄を空にする処理はブラウザ側。LINE はコピペ用の別バブルで同時送信。</dd>
+        </div>
+        <div class="rounded-xl border border-slate-100 bg-slate-50/60 p-4">
+          <dt class="font-semibold text-slate-900">4. AI サポート</dt>
+          <dd class="mt-2 leading-relaxed">要約・抽出・整形は将来 <strong class="text-slate-900">LLM をオプション段</strong>で挿入（README の方針）。現状はテンプレ＋ sync のルールベース。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <footer class="border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
+      <p>
+        <a class="font-medium text-sky-700 underline decoration-sky-600/30 hover:text-sky-900" href="../workflow-frame.html">workflow-frame.html</a>
+        <span class="mx-2 text-slate-300">·</span>
+        <a class="font-medium text-sky-700 underline decoration-sky-600/30 hover:text-sky-900" href="../README.md">README.md</a>
+      </p>
+      <p class="mt-2 text-xs text-slate-400">Mermaid / Tailwind は CDN 読み込みのため、表示にはネットワーク接続が必要です。</p>
+    </footer>
+  </main>
+</body>
+</html>

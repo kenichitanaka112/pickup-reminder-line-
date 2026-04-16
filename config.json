@@ -1,0 +1,71 @@
+{
+  "mainTemplate": "【送迎準備】{{dateJa}}（Asia/Tokyo）のリマインドです。\n\n（本文はリポジトリ直下の config.json の mainTemplate で編集）",
+  "secondMessagePrefix": "【前回のフリーメモ】\n",
+  "topicFeeds": [
+    {
+      "label": "Yahoo!ニュース トピックス",
+      "url": "https://news.yahoo.co.jp/rss/topics/top-picks.xml"
+    }
+  ],
+  "topicFetchMaxPerFeed": 2,
+  "topicFetchTimeoutMs": 12000,
+  "listBFetchMaxPerFeed": 2,
+  "listBDynamicMaxPerAxis": 3,
+  "listBDynamicAxesMax": 8,
+  "listBDynamicFetchPool": 12,
+  "listBExcludeTitleFragments": [
+    "川上庵",
+    "KAWAKAMI",
+    "神田まつや",
+    "更科",
+    "にょろ助",
+    "人形町今半",
+    "伊豆栄",
+    "JUMP SHOP",
+    "ミート矢澤",
+    "ソワン",
+    "世界堂",
+    "トゥールズ"
+  ],
+  "listBDynamicAxes": [
+    {
+      "label": "蕎麦・和食",
+      "keywords": ["蕎麦", "そば", "更科", "川上庵", "まつや", "にょろ助", "鰻", "今半", "伊豆栄"],
+      "searchQuery": "東京 蕎麦 話題"
+    },
+    {
+      "label": "肉・焼肉",
+      "keywords": ["肉", "焼肉", "ミート", "矢澤", "ステーキ"],
+      "searchQuery": "東京 焼肉 話題"
+    },
+    {
+      "label": "百貨・商業",
+      "keywords": ["百貨", "伊勢丹", "高島屋", "ヒルズ", "ルミネ"],
+      "searchQuery": "池袋 新宿 百貨店 話題"
+    },
+    {
+      "label": "画材・ホビー",
+      "keywords": ["画材", "世界堂", "トゥールズ", "ホビー", "フィギュア", "アニメ"],
+      "searchQuery": "東京 画材 アニメ 話題"
+    },
+    {
+      "label": "美容",
+      "keywords": ["美容", "皮膚科", "ソワン", "エステ"],
+      "searchQuery": "表参道 美容 話題"
+    }
+  ],
+  "listBCandidateFeeds": [
+    {
+      "label": "画材・文具（話題の種）",
+      "url": "https://news.google.com/rss/search?q=%E7%94%BB%E6%9D%90+%E6%96%87%E6%88%BF%E5%85%B7+%E6%9D%B1%E4%BA%AC&hl=ja&gl=JP&ceid=JP:ja"
+    },
+    {
+      "label": "百貨・都心商業（話題の種）",
+      "url": "https://news.google.com/rss/search?q=%E7%99%BE%E8%B2%A8%E5%BA%97+%E6%B1%A0%E8%A2%8B+%E6%96%B0%E5%AE%BF+%E6%B8%8B%E8%B0%B7&hl=ja&gl=JP&ceid=JP:ja"
+    },
+    {
+      "label": "アニメ・秋葉原周辺（話題の種）",
+      "url": "https://news.google.com/rss/search?q=%E7%A7%8B%E8%91%89%E5%8E%9F+%E3%82%A2%E3%83%8B%E3%83%A1+%E3%83%95%E3%82%A3%E3%82%AE%E3%83%A5%E3%82%A2&hl=ja&gl=JP&ceid=JP:ja"
+    }
+  ]
+}

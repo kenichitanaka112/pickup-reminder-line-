@@ -1,0 +1,68 @@
+name: Pickup reminder (LINE)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 19 13 * *"
+      timezone: "Asia/Tokyo"
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Optional sync-state.json from Secret
+        env:
+          SOUGEI_PREP_SYNC_STATE_JSON: ${{ secrets.SOUGEI_PREP_SYNC_STATE_JSON }}
+        run: |
+          if [ -n "${SOUGEI_PREP_SYNC_STATE_JSON:-}" ]; then
+            printf '%s' "$SOUGEI_PREP_SYNC_STATE_JSON" > sync-state.json
+            echo "Wrote sync-state.json from SOUGEI_PREP_SYNC_STATE_JSON"
+          fi
+
+      # ネット一発失敗でジョブ全体を赤にしない運用（取得失敗時も build → LINE は試行）。
+      - name: Fetch topic headlines (RSS / Atom)
+        continue-on-error: true
+        run: node fetch-topics.mjs
+
+      - name: Build main message
+        run: node build-message.mjs
+
+      - name: Enrich main message (optional hook)
+        continue-on-error: true
+        run: node enrich-message.mjs
+
+      - name: Job summary (fetch / enrich / main size)
+        if: always()
+        run: node write-pickup-job-summary.mjs
+
+      - name: Push LINE (main + optional 前回フリーメモ)
+        env:
+          SOUGEI_PREP_LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.SOUGEI_PREP_LINE_CHANNEL_ACCESS_TOKEN }}
+          SOUGEI_PREP_LINE_TO: ${{ secrets.SOUGEI_PREP_LINE_TO }}
+          SOUGEI_PREP_LINE_TEXT_FILE: out/main.txt
+          SOUGEI_PREP_LINE_TEXT_2_FILE: out/second.txt
+        run: node send-local.mjs
+
+      - name: Notify LINE on failure (same group)
+        if: failure()
+        env:
+          SOUGEI_PREP_LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.SOUGEI_PREP_LINE_CHANNEL_ACCESS_TOKEN }}
+          SOUGEI_PREP_LINE_TO: ${{ secrets.SOUGEI_PREP_LINE_TO }}
+          SOUGEI_PREP_LINE_TEXT: "[送迎リマインド失敗] ログを確認してください。 ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: node send-local.mjs
+
+      - name: Optional failure webhook (Discord / Slack Incoming)
+        if: failure()
+        env:
+          SOUGEI_PREP_FAILURE_WEBHOOK_URL: ${{ secrets.SOUGEI_PREP_FAILURE_WEBHOOK_URL }}
+          SOUGEI_PREP_FAILURE_WEBHOOK_TEXT: "[送迎リマインド失敗] ${{ github.repository }} run ${{ github.run_id }}"
+        run: node post-failure-webhook.mjs

@@ -1,0 +1,5 @@
+# このファイルを previous-memo.txt にコピーして使うか、
+# GitHub Actions の Secret SOUGEI_PREP_LINE_TEXT_2 に同じ内容を貼ってください。
+# 「#」で始まる行は build-message.mjs で無視されます。
+
+（前回のフリーメモ本文。1行目からそのまま第2通に含まれます。タイトル行は config.json の secondMessagePrefix が先頭に付きます。）

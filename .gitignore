@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+.env
+.env.local
+out/*
+!out/.gitkeep
+previous-memo.txt
+sync-state.json
