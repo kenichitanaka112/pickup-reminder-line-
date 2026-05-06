@@ -28,11 +28,6 @@ jobs:
             echo "Wrote sync-state.json from SOUGEI_PREP_SYNC_STATE_JSON"
           fi
 
-      # ネット一発失敗でジョブ全体を赤にしない運用（取得失敗時も build → LINE は試行）。
-      - name: Fetch topic headlines (RSS / Atom)
-        continue-on-error: true
-        run: node fetch-topics.mjs
-
       - name: Build main message
         run: node build-message.mjs
 

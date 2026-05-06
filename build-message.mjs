@@ -7,14 +7,6 @@
  * - visitedVenuesLog（または visitedVenues）: 訪問済み1行1店 → 第1通末尾に「よく行く店」向け案内＋各行に [new] 付与
  * - freeNotes: 第2通「前回のフリーメモ」本文（previous-memo.txt より優先）
  *
- * 任意の out/topics-snippet.txt（fetch-topics.mjs が生成）:
- * - 第1通に「直近の話題（自動取得）」ブロックとして追記
- *
- * 任意の out/list-b-snippet.txt（fetch-topics.mjs が生成）:
- * - 第1通に「一覧外・追加候補」ブロックとして追記
- * - 優先: sync の userFrequentVenuesLog / visited から軸推定→Google ニュース RSS（各軸1〜3・詳細URL）
- * - 軸が立たないとき: listBCandidateFeeds の静的 RSS にフォールバック
- *
  * このあと Actions では enrich-message.mjs が out/main.txt を任意加工し得る（既定 noop）。
  */
 
@@ -89,18 +81,6 @@ function stripCommentLines(text) {
 
 const cfg = loadConfig();
 let main = (cfg.mainTemplate || "").replace(/\{\{dateJa\}\}/g, tokyoDateJa());
-
-const topicsPath = join(outDir, "topics-snippet.txt");
-if (existsSync(topicsPath)) {
-  const chunk = readFileSync(topicsPath, "utf8").trim();
-  if (chunk) main += `\n\n${chunk}`;
-}
-
-const listBPath = join(outDir, "list-b-snippet.txt");
-if (existsSync(listBPath)) {
-  const chunk = readFileSync(listBPath, "utf8").trim();
-  if (chunk) main += `\n\n${chunk}`;
-}
 
 const sync = loadSyncState();
 if (sync && typeof sync === "object") {
