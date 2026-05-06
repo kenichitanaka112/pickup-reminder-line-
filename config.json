@@ -1,5 +1,5 @@
 {
-  "mainTemplate": "【送迎準備】{{dateJa}}（Asia/Tokyo）のリマインドです。\n\n（本文は automation/pickup-reminder/config.json の mainTemplate で編集）",
+  "mainTemplate": "【送迎準備】{{dateJa}}\n\n▼ 詳細・チェック記録はこちら\nhttps://kenichitanaka112.github.io/pickup-reminder-line-/workflow-frame.html\n\n▼ 準備チェック\n□ 大谷・MLB、なでしこ／谷川萌々子、鬼滅、髭男・バックナンバーなどを軽く確認した\n□ 食事候補（蕎麦・肉・鰻）のエリア・店を当たり付けた\n□ 車内で聞くオープン質問を3つ用意した\n\n▼ 車内チェック\n□ ガソリン残量を確認し、必要なら給油した\n□ 車内清掃（床・シート・ダッシュまわり）をした\n□ 車外清掃（窓・ドアまわり）をした\n□ 空調・温度を調整した（冷暖房・換気・臭い）\n□ 音楽の音量・プレイリスト・曲間の無音を確認した\n□ 室内灯・サンシェード・荷物の固定など最終確認した",
   "secondMessagePrefix": "【前回のフリーメモ】\n",
   "listBExcludeTitleFragments": [
     "川上庵",
