@@ -21,7 +21,6 @@ function safeReadJson(path) {
   }
 }
 
-const fetchS = safeReadJson(join(outDir, "fetch-status.json"));
 const enrichS = safeReadJson(join(outDir, "enrich-status.json"));
 const mainPath = join(outDir, "main.txt");
 let mainNote = "なし";
@@ -30,25 +29,7 @@ if (existsSync(mainPath)) {
   mainNote = `${n} 文字`;
 }
 
-const lines = ["## 送迎リマインド（取得 / enrich）", ""];
-
-if (fetchS) {
-  lines.push(
-    "| 項目 | 値 |",
-    "|------|-----|",
-    `| topics モード | ${escapeCell(String(fetchS.topicsMode ?? ""))} |`,
-    `| topics 箇条書き行 | ${fetchS.topicsBulletLines ?? 0} |`,
-    `| topics 取得系の問題行 | ${fetchS.topicsIssueLines ?? 0} |`,
-    `| list-b モード | ${escapeCell(String(fetchS.listBMode ?? ""))} |`,
-    `| list-b 箇条書き行 | ${fetchS.listBBulletLines ?? 0} |`,
-    `| list-b 取得系の問題行 | ${fetchS.listBIssueLines ?? 0} |`,
-    `| 一覧外 動的軸ヒット数 | ${fetchS.listBDynamicAxesHit ?? 0} |`,
-    `| 致命的エラー | ${fetchS.fatalError ? escapeCell(String(fetchS.fatalError)) : "なし"} |`,
-    ""
-  );
-} else {
-  lines.push("（`out/fetch-status.json` なし — fetch-topics 未実行または古い実行）", "");
-}
+const lines = ["## 送迎リマインド（enrich / build）", ""];
 
 if (enrichS) {
   lines.push(
