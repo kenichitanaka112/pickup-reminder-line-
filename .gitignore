@@ -4,5 +4,6 @@ node_modules/
 .env.local
 out/*
 !out/.gitkeep
+!out/digest.json
 previous-memo.txt
 sync-state.json
