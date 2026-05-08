@@ -1793,20 +1793,29 @@
           var d = new Date(data.generatedAt);
           updated.textContent = '更新: ' + d.toLocaleDateString('ja-JP');
         }
+        function renderDigestItem(item) {
+          var date = item.pubDate ? ' <span class="text-slate-400 text-[10px]">— ' + new Date(item.pubDate).toLocaleDateString('ja-JP') + '</span>' : '';
+          var src  = item.source  ? ' <span class="text-slate-400 text-[10px]">(' + item.source + ')</span>' : '';
+          return '<li><a href="' + item.link + '" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline-offset-2 hover:underline">' + item.title + '</a>' + date + src + '</li>';
+        }
         grid.innerHTML = data.topics.map(function(topic) {
-          var items = topic.items.length === 0
-            ? '<p class="mt-2 text-xs text-slate-400">記事が見つかりませんでした</p>'
-            : '<ul class="mt-2 space-y-1.5 text-xs leading-relaxed text-slate-600">' +
-                topic.items.map(function(item) {
-                  var date = item.pubDate ? ' <span class="text-slate-400 text-[10px]">— ' + new Date(item.pubDate).toLocaleDateString('ja-JP') + '</span>' : '';
-                  var src = item.source ? ' <span class="text-slate-400 text-[10px]">(' + item.source + ')</span>' : '';
-                  return '<li><a href="' + item.link + '" target="_blank" rel="noopener noreferrer" class="text-sky-700 underline-offset-2 hover:underline">' + item.title + '</a>' + date + src + '</li>';
-                }).join('') +
-              '</ul>';
+          if (topic.items.length === 0) {
+            return '<div class="rounded-xl border border-slate-200 bg-slate-50 p-4">' +
+              '<h3 class="text-sm font-semibold text-slate-900">' + topic.label + '</h3>' +
+              '<p class="mt-2 text-xs text-slate-400">記事が見つかりませんでした</p></div>';
+          }
+          var visible = topic.items.slice(0, 3);
+          var hidden  = topic.items.slice(3);
+          var topList = '<ul class="mt-2 space-y-1.5 text-xs leading-relaxed text-slate-600">' +
+            visible.map(renderDigestItem).join('') + '</ul>';
+          var moreHtml = hidden.length > 0
+            ? '<details class="mt-2"><summary class="cursor-pointer text-xs font-medium text-sky-700 hover:text-sky-900">▼ 残り ' + hidden.length + '件を表示</summary>' +
+              '<ul class="mt-1.5 space-y-1.5 text-xs leading-relaxed text-slate-600">' +
+              hidden.map(renderDigestItem).join('') + '</ul></details>'
+            : '';
           return '<div class="rounded-xl border border-slate-200 bg-slate-50 p-4">' +
             '<h3 class="text-sm font-semibold text-slate-900">' + topic.label + '</h3>' +
-            items +
-            '</div>';
+            topList + moreHtml + '</div>';
         }).join('');
       } catch (e) {
         grid.innerHTML = '<p class="col-span-2 text-xs text-slate-400">ニュースデータなし（GitHub Actions 実行後に表示されます）</p>';
