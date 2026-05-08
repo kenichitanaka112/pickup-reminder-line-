@@ -1,0 +1,81 @@
+{
+  "_comment": "未訪問のおすすめ店舗リスト。変更時は validate-shops.mjs を実行して全条件を確認してから git push すること。",
+  "conditions": {
+    "required": [
+      "公式HPが実在し HTTP 200 で応答すること",
+      "日中（11:00〜15:00 の間）営業していること（ランチコース不要・単品注文可であれば可）",
+      "アラカルト（単品注文）が充実していること"
+    ],
+    "preferred": [
+      "表参道ヒルズから車で約20分圏内",
+      "個室またはゆったりした座席で会話できる空間",
+      "ランチ帯からビールまたはプレミアムビール提供",
+      "50代の男女3名が落ち着いて利用できる上品な雰囲気",
+      "大規模チェーンではなく、オーナー色のある名店",
+      "1人あたり目安 2,500〜10,000円（税サ別は公式で確認）"
+    ]
+  },
+  "excludedVisited": [
+    "日本橋 うなぎ割烹大江戸",
+    "日本橋 よつ谷",
+    "神田 神田まつや本店",
+    "六本木 にょろ助",
+    "麻布 麻布永坂更科本店",
+    "北青山 kawakami-an tokyo",
+    "青山 青山川上庵",
+    "麻布 麻布川上庵"
+  ],
+  "shops": [
+    {
+      "rank": 1,
+      "name": "筑紫樓 恵比寿店",
+      "url": "https://wp.tsukushiro.co.jp/ebisu/",
+      "genre": "中国料理（ふかひれ専門）",
+      "area": "恵比寿",
+      "driveMinFromOmotesando": "15〜20分",
+      "lunchHours": "平日 11:30〜15:00 / 土日祝 11:30〜16:30",
+      "alacarte": true,
+      "alacarteNote": "アラカルト専用ページあり（前菜・魚介・肉・ふかひれ料理・麺飯・飲茶）",
+      "beer": true,
+      "beerNote": "アサヒ・ヱビス・黒生・中国ビール各種",
+      "privateRoom": true,
+      "privateRoomNote": "個室6室完備",
+      "verifiedAt": "2026-05-08",
+      "description": "恵比寿・車15〜20分圏。ふかひれ専門中国料理・個室6室。ランチ平日11:30〜・土日11:30〜毎日営業。ビール各種あり。"
+    },
+    {
+      "rank": 2,
+      "name": "中国飯店 富麗華（広尾本店）",
+      "url": "https://www.chuugokuhanten.com/store/fureika.html",
+      "genre": "中国料理（広東・飲茶）",
+      "area": "広尾・麻布十番",
+      "driveMinFromOmotesando": "10〜15分",
+      "lunchHours": "平日・土日祝ランチあり",
+      "alacarte": true,
+      "alacarteNote": "アラカルト約200品（ふかひれのみで常時12品）、ミシュラン1つ星",
+      "beer": true,
+      "beerNote": "プレミアムラガー・瓶ビール（青島・ハイネケン等）",
+      "privateRoom": true,
+      "privateRoomNote": "個室あり",
+      "verifiedAt": "2026-05-08",
+      "description": "広尾・車8〜14分。飲茶・広東料理。落ち着いた席で会話向き。アラカルト約200品。"
+    },
+    {
+      "rank": 3,
+      "name": "キャンティ 飯倉片町本店",
+      "url": "https://www.chianti-1960.com/",
+      "genre": "イタリアン（老舗）",
+      "area": "飯倉片町（麻布台）",
+      "driveMinFromOmotesando": "10〜15分",
+      "lunchHours": "1Fアル・カフェ 11:30〜（通し営業）",
+      "alacarte": true,
+      "alacarteNote": "アラカルト多数（パスタ・肉料理・前菜等）、1960年創業の老舗",
+      "beer": true,
+      "beerNote": "要事前確認（イタリアン＋バーのため提供実績あり）",
+      "privateRoom": true,
+      "privateRoomNote": "個室あり（レストランB1F）",
+      "verifiedAt": "2026-05-08",
+      "description": "飯倉・車10〜15分圏。1960年創業の老舗イタリアン。1Fアル・カフェが11:30〜通し営業・単品注文可。アラカルト多数。"
+    }
+  ]
+}

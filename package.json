@@ -13,6 +13,7 @@
     "pickup:enrich-message": "node enrich-message.mjs",
     "pickup:job-summary": "node write-pickup-job-summary.mjs",
     "pickup:send-local": "node send-local.mjs",
-    "test:pickup": "node --test test/list-b-core.test.mjs"
+    "test:pickup": "node --test test/list-b-core.test.mjs",
+    "validate:shops": "node validate-shops.mjs"
   }
 }
