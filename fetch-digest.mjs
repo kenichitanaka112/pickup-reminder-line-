@@ -73,12 +73,25 @@ function filterRecent(items) {
   });
 }
 
+const AGGREGATORS = new Set([
+  "Yahoo!ニュース", "ｄメニューニュース", "au Webポータル",
+  "livedoorニュース", "Infoseekニュース", "エキサイトニュース",
+]);
+
 function dedupe(items) {
-  const seen = new Set();
-  return items.filter((item) => {
+  // B: オリジナルソースを優先（アグリゲーターを後回し）
+  const sorted = [...items].sort((a, b) =>
+    AGGREGATORS.has(a.source) ? 1 : AGGREGATORS.has(b.source) ? -1 : 0
+  );
+  // A: タイトル先頭 + ソース で重複除去
+  const seenTitle = new Set();
+  const seenSource = new Set();
+  return sorted.filter((item) => {
     const key = item.title.slice(0, 40);
-    if (seen.has(key)) return false;
-    seen.add(key);
+    if (seenTitle.has(key)) return false;
+    if (seenSource.has(item.source)) return false;
+    seenTitle.add(key);
+    seenSource.add(item.source);
     return true;
   });
 }
