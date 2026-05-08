@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Unit tests
+        run: npm run test:pickup
+
       - name: Optional sync-state.json from Secret
         env:
           SOUGEI_PREP_SYNC_STATE_JSON: ${{ secrets.SOUGEI_PREP_SYNC_STATE_JSON }}
