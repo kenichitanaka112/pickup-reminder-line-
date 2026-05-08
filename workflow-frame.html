@@ -592,90 +592,83 @@
             </div>
             <div class="mt-4 rounded-xl border border-amber-200/70 bg-gradient-to-br from-amber-50/80 to-orange-50/40 p-4 shadow-sm" aria-labelledby="visit-rec-heading">
               <h3 id="visit-rec-heading" class="text-sm font-semibold text-slate-900">未訪問のおすすめ</h3>
-              <p class="mt-1 text-[11px] leading-relaxed text-slate-600">
-                ここは<strong class="font-medium text-slate-800">都内の高級・上質な飲食と画材のコンシェルジュ</strong>という前提で整理します。<strong class="font-medium text-slate-700">A</strong> は<strong class="font-medium text-slate-700">嗜好・必須条件・出力形式</strong>に沿った<strong class="font-medium text-slate-700">飲食の未訪問案</strong>（下の例はモック。営業・禁煙・ドリンクは必ず公式で裏取り）。<strong class="font-medium text-slate-700">B</strong> は<strong class="font-medium text-slate-700">一覧に無い追加候補</strong>で、よく行く店・訪問済みの語から軸を推定してトリガー取得した見出しを LINE 第1通へ（<a href="#list-b-candidates-block" class="text-sky-700 underline decoration-sky-400/50">一覧外ブロック</a>）。画材の買い物動線は<strong class="font-medium text-slate-700">下の嗜好②と折りたたみの画材店</strong>を参照。
-              </p>
-              <p class="mt-2 text-[11px] leading-relaxed text-slate-600">ページ更新・LINE 文面を直すときは、<strong class="font-medium text-slate-700">訪問済み店リスト</strong>と照合し、重複を減らしてください。</p>
 
-              <div class="mt-4 rounded-lg border border-violet-200/80 bg-violet-50/50 p-3">
-                <p class="text-xs font-bold text-violet-950">コンシェルジュの役割</p>
-                <p class="mt-1 text-[11px] leading-relaxed text-violet-900/95">ユーザーの過去の嗜好と、<strong class="font-medium text-violet-950">厳しい制約条件をすべて満たす</strong>店舗だけを厳選して提案する。画材屋は「必須条件（飲食）」の対象外だが、嗜好②として別枠で考慮する。</p>
-              </div>
+              <!-- 提案店舗名（3件）フロント表示 -->
+              <ol class="mt-3 space-y-2 text-sm font-medium text-slate-800">
+                <li class="flex items-start gap-2">
+                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[11px] font-bold text-amber-800">1</span>
+                  よろにく 惠比寿店
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[11px] font-bold text-amber-800">2</span>
+                  中国飯店 富麗華（広尾本店）
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[11px] font-bold text-amber-800">3</span>
+                  Braceria Yamamoto（広尾）
+                </li>
+              </ol>
 
-              <div class="mt-3 grid gap-3 sm:grid-cols-2">
-                <div class="rounded-lg border border-red-100 bg-white/90 p-3">
-                  <p class="text-xs font-bold text-red-800">嗜好① よく行く飲食店（重複提案の禁止リスト兼ねる）</p>
-                  <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-red-900">
-                    <li>日本橋「うなぎ割烹大江戸」— 格式と大衆性の老舗</li>
-                    <li>日本橋「よつ谷」— 和牛</li>
-                    <li>神田「神田まつや本店」— 蕎麦老舗</li>
-                    <li>六本木「にょろ助」— 炭火焼き</li>
-                    <li>麻布「麻布永坂更科本店」— 蕎麦</li>
-                    <li>北青山「kawakami-an tokyo」</li>
-                    <li>青山「青山川上庵」</li>
-                    <li>麻布「麻布川上庵」</li>
-                  </ul>
+              <!-- コンシェルジュ指示内容（折りたたみ） -->
+              <details class="mt-4">
+                <summary class="cursor-pointer text-[11px] font-medium text-slate-500 hover:text-slate-700">▶ 選定条件・詳細を表示</summary>
+                <div class="mt-3 space-y-3">
+                  <div class="rounded-lg border border-violet-200/80 bg-violet-50/50 p-3">
+                    <p class="text-xs font-bold text-violet-950">コンシェルジュの役割</p>
+                    <p class="mt-1 text-[11px] leading-relaxed text-violet-900/95">ユーザーの過去の嗜好と、<strong class="font-medium text-violet-950">厳しい制約条件をすべて満たす</strong>店舗だけを厳選して提案する。画材屋は「必須条件（飲食）」の対象外だが、嗜好②として別枠で考慮する。</p>
+                  </div>
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <div class="rounded-lg border border-red-100 bg-white/90 p-3">
+                      <p class="text-xs font-bold text-red-800">嗜好① よく行く飲食店（重複提案の禁止リスト兼ねる）</p>
+                      <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-red-900">
+                        <li>日本橋「うなぎ割烹大江戸」— 格式と大衆性の老舗</li>
+                        <li>日本橋「よつ谷」— 和牛</li>
+                        <li>神田「神田まつや本店」— 蕎麦老舗</li>
+                        <li>六本木「にょろ助」— 炭火焼き</li>
+                        <li>麻布「麻布永坂更科本店」— 蕎麦</li>
+                        <li>北青山「kawakami-an tokyo」</li>
+                        <li>青山「青山川上庵」</li>
+                        <li>麻布「麻布川上庵」</li>
+                      </ul>
+                    </div>
+                    <div class="rounded-lg border border-emerald-100 bg-white/90 p-3">
+                      <p class="text-xs font-bold text-emerald-900">嗜好② 画材・関連</p>
+                      <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-emerald-900">
+                        <li>新宿「世界堂新宿本店」— 品揃え（やや広すぎ）</li>
+                        <li>神田「トゥールズお茶の水」— 漫画・コピック</li>
+                        <li>後楽「JUMP SHOP 東京ドームシティ」— 画材なし・グッズ</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="rounded-lg border border-amber-300/70 bg-white/85 p-3">
+                    <p class="text-xs font-bold text-amber-950">必須条件（飲食店のみ・画材屋除外）</p>
+                    <ol class="mt-2 list-decimal space-y-1 pl-4 text-[10px] leading-relaxed text-amber-950">
+                      <li>エリア：<strong class="font-medium">表参道ヒルズから車で約20分圏内</strong></li>
+                      <li><strong class="font-medium">店内禁煙</strong>（分煙可不可は公式で確認）</li>
+                      <li>ランチ利用可。<strong class="font-medium">クラフトビールまたはプレミアムビール</strong>がランチ帯から提供され、<strong class="font-medium">ゆっくり会話できる</strong>こと</li>
+                      <li>客層・空間：<strong class="font-medium">50代の男女3名</strong>が落ち着いて会話できる、上品でくつろげる雰囲気</li>
+                      <li>品質：<strong class="font-medium">SNS映えより素材と技術</strong>が主役</li>
+                      <li>店舗形態：<strong class="font-medium">大規模チェーンを避け</strong>、個人店・小規模名店を優先</li>
+                      <li>価格：<strong class="font-medium">1人目安 2,500〜5,000円</strong>（税サ別は公式で）</li>
+                    </ol>
+                  </div>
+                  <div class="space-y-2">
+                    <p class="text-xs font-semibold text-amber-950">各店の詳細</p>
+                    <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                      <h4 class="text-xs font-bold text-red-900">① よろにく 惠比寿店</h4>
+                      <p class="mt-1 text-[10px] leading-relaxed text-slate-700">恵比寿・車15〜20分圏。高級焼肉・個室で会話向き。和牛・炭火軸。プレミアムビール要確認。</p>
+                    </article>
+                    <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                      <h4 class="text-xs font-bold text-red-900">② 中国飯店 富麗華（広尾本店）</h4>
+                      <p class="mt-1 text-[10px] leading-relaxed text-slate-700">広尾・車8〜14分。飲茶・広東料理。落ち着いた席で会話向き。ビール要確認。</p>
+                    </article>
+                    <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
+                      <h4 class="text-xs font-bold text-red-900">③ Braceria Yamamoto（広尾）</h4>
+                      <p class="mt-1 text-[10px] leading-relaxed text-slate-700">広尾・車10〜16分。イタリアン肉料理・オーナーシェフ単店。ランチビール要確認。</p>
+                    </article>
+                  </div>
                 </div>
-                <div class="rounded-lg border border-emerald-100 bg-white/90 p-3">
-                  <p class="text-xs font-bold text-emerald-900">嗜好② 画材・関連</p>
-                  <ul class="mt-2 list-disc space-y-0.5 pl-4 text-[10px] leading-relaxed text-emerald-900">
-                    <li>新宿「世界堂新宿本店」— 品揃え（やや広すぎ）</li>
-                    <li>神田「トゥールズお茶の水」— 漫画・コピック</li>
-                    <li>後楽「JUMP SHOP 東京ドームシティ」— 画材なし・グッズ</li>
-                  </ul>
-                  <p class="mt-2 text-[10px] leading-relaxed text-emerald-800/90">※下記「必須条件」の番号は<strong class="font-medium">飲食店のみ</strong>に適用。画材屋は別目的のため対象外。</p>
-                </div>
-              </div>
-
-              <div class="mt-3 rounded-lg border border-amber-300/70 bg-white/85 p-3">
-                <p class="text-xs font-bold text-amber-950">必須条件（飲食店のみ・画材屋除外）</p>
-                <ol class="mt-2 list-decimal space-y-1 pl-4 text-[10px] leading-relaxed text-amber-950">
-                  <li>エリア：<strong class="font-medium">表参道ヒルズから車で約20分圏内</strong></li>
-                  <li><strong class="font-medium">店内禁煙</strong>（分煙可不可は公式で確認）</li>
-                  <li>ランチ利用可。<strong class="font-medium">クラフトビールまたはプレミアムビール</strong>がランチ帯から提供され、<strong class="font-medium">ゆっくり会話できる</strong>こと（ランチコースの有無は不問）</li>
-                  <li>客層・空間：<strong class="font-medium">50代の男女3名</strong>（女性2・男性1）が落ち着いて会話できる、上品でくつろげる雰囲気</li>
-                  <li>品質：<strong class="font-medium">SNS映えより素材と技術</strong>が主役</li>
-                  <li>店舗形態：<strong class="font-medium">大規模チェーンを避け</strong>、オーナー目線の個人店・小規模名店を優先</li>
-                  <li>価格：<strong class="font-medium">コスパ売りでない</strong>、質に見合った価格・<strong class="font-medium">1人目安 2,500〜5,000円</strong>（税サ別は公式で）</li>
-                </ol>
-              </div>
-
-              <div class="mt-3 rounded-lg border border-slate-200 bg-slate-50/90 p-3">
-                <p class="text-xs font-bold text-slate-800">出力形式（提案1件ごと）</p>
-                <ol class="mt-2 list-decimal space-y-1 pl-4 text-[10px] leading-relaxed text-slate-700">
-                  <li><strong class="font-medium">提案店舗名</strong></li>
-                  <li><strong class="font-medium">選定理由</strong>（上記必須条件のどれをどう満たすか、列挙）</li>
-                  <li><strong class="font-medium">推奨するメニューやビールの特徴</strong></li>
-                  <li><strong class="font-medium">表参道ヒルズからの移動時間</strong>（車想定・地図アプリで再確認）</li>
-                </ol>
-              </div>
-
-              <p class="mt-4 text-xs font-semibold text-amber-950">A — 飲食・未訪問向けの例（コンシェルジュ型・要公式裏取り）</p>
-              <p class="mt-1 text-[10px] leading-relaxed text-amber-900/90">以下は<strong class="font-medium">HTMLモック用のサンプル文案</strong>です。禁煙・ビールの品揃え・ランチ時間・予約は開店直後に電話または公式で必ず確認してください。嗜好①に既にある店名は<strong class="font-medium">未訪問案から除外</strong>します。</p>
-              <div class="mt-3 space-y-4">
-                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
-                  <h4 class="text-xs font-bold text-red-900">提案店舗名：よろにく 惠比寿店</h4>
-                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①恵比寿は表参道ヒルズから車でおおむね15〜20分圏。②③高級焼肉のため全席禁煙型が多いが<strong class="font-medium text-amber-800">最新の喫煙区分は要公式確認</strong>。ランチ営業あり。プレミアムビール（瓶・樽生の有無）はメニューで要確認。④個室・半個室で会話向き。⑤和牛の火入れ・部位で技術が前面。⑥店舗単位のブランドで大衆チェーンではない。⑦ランチでも質に見合った価格帯になりやすい（予算内かはコース選択で要確認）。嗜好の「よつ谷」「にょろ助」に近い<strong class="font-medium">和牛・炭火</strong>軸。</p>
-                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>しゃぶしゃぶ「薫風」やタン・ハラミ等の部位焼き。ビールはドリンクリストの<strong class="font-medium">国産プレミアム樽生 or 瓶</strong>を確認のうえ選択（クラフトの有無は季節替わりの可能性）。</p>
-                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約12〜18分（渋谷経由・渋滞で変動）</span></p>
-                </article>
-                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
-                  <h4 class="text-xs font-bold text-red-900">提案店舗名：中国飯店 富麗華（広尾本店）</h4>
-                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①広尾は表参道ヒルズから車で約10〜15分。②ラウンジ型の飲茶・広東料理店で<strong class="font-medium text-amber-800">禁煙方針は公式・席種で要確認</strong>。③ランチ帯からビール提供の事例が多いジャンルだが<strong class="font-medium">メニューで要確認</strong>。落ち着いた席で会話向き。⑤素材（海老・点心）と技術。⑥単店の名店イメージ。⑦飲茶なら目安内に収めやすいがオーダーで変動。</p>
-                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>飲茶の点心の数品に、<strong class="font-medium">プレミアムラガー or 瓶ビール</strong>（青島・ハイネケン等の有無は店舗確認）。海老蒸し餃子・腸粉など上品な一品を中心に。</p>
-                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約8〜14分</span></p>
-                </article>
-                <article class="rounded-lg border border-red-100 bg-white/95 p-3 shadow-sm">
-                  <h4 class="text-xs font-bold text-red-900">提案店舗名：Braceria Yamamoto（広尾）</h4>
-                  <p class="mt-2 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">選定理由：</strong>①広尾エリアで車10〜15分圏。②③イタリアン肉料理＋バー文化のため<strong class="font-medium">ランチからグラス・瓶のビール類が出やすい</strong>がメニュー要確認。店内は落ち着いた照明と席距離で④に合致しやすい。⑤炭火・肉の扱いで技術重視。⑥オーナーシェフの単店。⑦ランチはコース次第で上限近づくため<strong class="font-medium">事前予算共有</strong>推奨。</p>
-                  <p class="mt-1.5 text-[10px] leading-relaxed text-slate-700"><strong class="text-slate-800">推奨するメニューやビールの特徴：</strong>タリアータや炭焼きステーキのランチプレート。ビールは<strong class="font-medium">イタリアン向けプレミアム瓶・生</strong>（メニュー記載の国産・輸入樽生の有無を確認）。</p>
-                  <p class="mt-1.5 text-[10px] font-medium text-slate-800">表参道ヒルズからの移動時間：<span class="font-normal text-slate-600">車で約10〜16分</span></p>
-                </article>
-              </div>
-
-              <p class="mt-5 text-xs font-semibold text-amber-950">B — 一覧に無い追加候補（トリガー時に取得）</p>
-              <p class="mt-1 text-[11px] leading-relaxed text-slate-600">このモック HTML には<strong class="font-medium text-slate-700">店名の静的一覧は載せません</strong>。<strong class="font-medium text-slate-700">GitHub Actions の送迎リマインド実行時</strong>に <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">fetch-topics.mjs</code> が <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">sync-state</code> のよく行く店・訪問済みと <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">listBDynamicAxes</code> で軸を立て、<strong class="font-medium text-slate-700">Google ニュース RSS</strong>から各軸最大3件（詳細URL付き）を <strong class="font-medium text-slate-700">LINE 第1通</strong>へ追記します。軸が一つも立たないときだけ <code class="rounded bg-slate-100 px-1 font-mono text-[10px] text-slate-800">listBCandidateFeeds</code> にフォールバックします。内容は報道・話題の種であり、営業情報の代替ではありません。<strong class="font-medium text-slate-700">軸のキーワードは上の必須条件・嗜好に沿って config で調整</strong>すると、コンシェルジュ方針と齟齬が減ります。</p>
-              <p class="mt-2 rounded-lg border border-slate-200 bg-white/90 p-3 text-[10px] leading-relaxed text-slate-600">ローカル確認: <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">sync-state.json</code> を置いたうえで <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">npm run pickup:fetch-topics</code> → <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">out/list-b-snippet.txt</code>。軸・除外語は <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">config.json</code> の <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">listBDynamicAxes</code> / <code class="rounded bg-slate-50 px-1 font-mono text-slate-800">listBExcludeTitleFragments</code> で調整（各配信元の利用条件に従ってください）。</p>
+              </details>
 
               <div class="mt-4 rounded-lg border border-amber-300/60 bg-white/70 p-3">
                 <p class="text-xs font-semibold text-slate-800">訪問済み（端末・除外の参考）</p>
