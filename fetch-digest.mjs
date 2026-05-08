@@ -18,7 +18,7 @@ const TOPICS = [
   { id: "music",    label: "髭男・バックナンバー", queries: ["Official髭男dism", "バックナンバー バンド"] },
 ];
 
-const MAX_ITEMS    = 20;
+const MAX_ITEMS    = 10;
 const ONE_WEEK_MS  = 7 * 24 * 60 * 60 * 1000;
 const TIMEOUT_MS   = 10000;
 
